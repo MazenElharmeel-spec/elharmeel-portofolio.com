@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Mazen Elharmeel — Websites, AI Chatbots &amp; Automation</title>
+  <meta name="description" content="Freelance developer building websites, apps, AI chatbots, agents and automation systems.">
+
+  <!-- Fonts: Bricolage Grotesque (English), JetBrains Mono (labels), Cairo (Arabic) -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800&family=JetBrains+Mono:wght@400;500&family=Cairo:wght@400;600;800&display=swap">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<!--
+  TRANSLATIONS: any element with data-i18n="some.key" is translated to Arabic
+  using the matching key in js/translations.js. The English text stays here.
+-->
+
+<body>
+  <div class="wrap">
+
+    <!-- ===================== NAVIGATION ===================== -->
+    <nav class="nav">
+      <b class="nav__brand" data-i18n="nav.brand">Mazen Elharmeel</b>
+      <div class="nav__links">
+        <a class="nav__link--hide-mobile" href="#services" data-i18n="nav.services">Services</a>
+        <a class="nav__link--hide-mobile" href="#work" data-i18n="nav.work">Work</a>
+        <a class="nav__link--hide-mobile" href="#process" data-i18n="nav.process">Process</a>
+        <a href="#contact" data-i18n="nav.contact">Contact</a>
+        <button class="pill-button" id="language-toggle" aria-label="Language">العربية</button>
+        <button class="pill-button" id="theme-toggle" aria-label="Toggle theme" data-i18n="nav.theme">Theme</button>
+      </div>
+    </nav>
+
+
+    <!-- ===================== HERO ===================== -->
+    <header class="hero">
+      <div class="reveal">
+        <span class="mono" data-i18n="hero.label">Freelance developer — available for projects</span>
+
+        <h1 class="hero__title" data-i18n="hero.title">We build the web, the apps, and the <em>AI</em> that runs them.</h1>
+
+        <p class="lead" data-i18n="hero.lead">Websites, mobile and web apps, chatbots, AI agents and automation systems for founders and small teams who want something that works, not just something that looks finished.</p>
+
+        <div class="btn-row">
+          <a class="btn btn--primary" href="#contact" data-i18n="hero.start">Start a project</a>
+          <a class="btn" href="#services" data-i18n="hero.services">See services</a>
+        </div>
+      </div>
+    </header>
+
+
+    <!-- ===================== SERVICES ===================== -->
+    <section class="section" id="services">
+      <span class="mono reveal" data-i18n="services.label">01 — Services</span>
+      <h2 class="section__title reveal" data-i18n="services.title">What we can build for you</h2>
+
+      <div class="services">
+
+        <div class="service reveal">
+          <span class="mono">01</span>
+          <h3 class="service__title" data-i18n="service.web.title">Websites</h3>
+          <p class="service__text" data-i18n="service.web.text">Fast, responsive business sites, landing pages and portfolios, built to be found and to convert visitors into clients.</p>
+        </div>
+
+        <div class="service reveal">
+          <span class="mono">02</span>
+          <h3 class="service__title" data-i18n="service.apps.title">Web &amp; mobile apps</h3>
+          <p class="service__text" data-i18n="service.apps.text">Custom apps with clean interfaces and solid back ends, from first prototype to a product people actually use.</p>
+        </div>
+
+        <div class="service reveal">
+          <span class="mono">03</span>
+          <h3 class="service__title" data-i18n="service.chatbots.title">AI chatbots</h3>
+          <p class="service__text" data-i18n="service.chatbots.text">Chatbots trained on your content that answer customers, qualify leads and support your team around the clock.</p>
+        </div>
+
+        <div class="service reveal">
+          <span class="mono">04</span>
+          <h3 class="service__title" data-i18n="service.agents.title">AI agents</h3>
+          <p class="service__text" data-i18n="service.agents.text">Assistants that do more than talk: they look things up, use tools, and finish tasks on your behalf.</p>
+        </div>
+
+        <div class="service reveal">
+          <span class="mono">05</span>
+          <h3 class="service__title" data-i18n="service.automation.title">Automation systems</h3>
+          <p class="service__text" data-i18n="service.automation.text">Connect your tools and remove repetitive work like data entry, reports, notifications and follow-ups.</p>
+        </div>
+
+        <div class="service reveal">
+          <span class="mono">06</span>
+          <h3 class="service__title" data-i18n="service.integration.title">AI integration</h3>
+          <p class="service__text" data-i18n="service.integration.text">Add Gemini or OpenAI features to an existing product: summaries, search, content generation, smart replies.</p>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ===================== SELECTED WORK ===================== -->
+    <section class="section" id="work">
+      <span class="mono reveal" data-i18n="work.label">02 — Selected work</span>
+      <h2 class="section__title reveal" data-i18n="work.title">Proof, not promises</h2>
+
+      <div class="work reveal">
+
+        <!-- Left panel: the project -->
+        <div class="work__panel">
+          <span class="mono" data-i18n="work.kind">Graduation project</span>
+          <h3 class="work__title">EduConnect</h3>
+          <p class="work__text" data-i18n="work.text">A smart online learning platform with an AI teacher assistant that supports students through natural conversation. We worked on the platform's AI functionality and its integration with the rest of the product. Graded A+ (Excellent).</p>
+
+          <div class="tags">
+            <span>Gemini API</span>
+            <span>NLP</span>
+            <span data-i18n="work.tag.agents">AI agents</span>
+            <span data-i18n="work.tag.genai">Generative AI</span>
+            <span data-i18n="work.tag.team">Teamwork</span>
+          </div>
+        </div>
+
+        <!-- Right panel: what the project shows -->
+        <div class="work__panel">
+          <span class="mono" data-i18n="work.shows">What it shows</span>
+          <ul class="work__points">
+            <li data-i18n="work.point1">Conversational AI wired into a real product</li>
+            <li data-i18n="work.point2">Agent-style assistant behaviour, not a plain Q&amp;A box</li>
+            <li data-i18n="work.point3">Working inside a team and shipping together</li>
+            <li data-i18n="work.point4">Your project could be the next case study here</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ===================== PROCESS ===================== -->
+    <section class="section" id="process">
+      <span class="mono reveal" data-i18n="process.label">03 — Process</span>
+      <h2 class="section__title reveal" data-i18n="process.title">Simple, clear, no surprises</h2>
+
+      <div class="steps">
+
+        <div class="step reveal">
+          <span class="mono" data-i18n="step1.label">Step 1</span>
+          <h3 class="step__title" data-i18n="step1.title">Talk</h3>
+          <p class="step__text" data-i18n="step1.text">You describe the goal. We ask the right questions and send a clear scope and price.</p>
+        </div>
+
+        <div class="step reveal">
+          <span class="mono" data-i18n="step2.label">Step 2</span>
+          <h3 class="step__title" data-i18n="step2.title">Design</h3>
+          <p class="step__text" data-i18n="step2.text">A quick plan or mockup so we agree on the direction before any heavy work.</p>
+        </div>
+
+        <div class="step reveal">
+          <span class="mono" data-i18n="step3.label">Step 3</span>
+          <h3 class="step__title" data-i18n="step3.title">Build</h3>
+          <p class="step__text" data-i18n="step3.text">Regular updates with working previews you can click through along the way.</p>
+        </div>
+
+        <div class="step reveal">
+          <span class="mono" data-i18n="step4.label">Step 4</span>
+          <h3 class="step__title" data-i18n="step4.title">Launch &amp; support</h3>
+          <p class="step__text" data-i18n="step4.text">Deployment, handover and help after launch so you are never left stuck.</p>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ===================== TOOLBOX ===================== -->
+    <section class="section" id="stack">
+      <span class="mono reveal" data-i18n="stack.label">04 — Toolbox</span>
+      <h2 class="section__title reveal" data-i18n="stack.title">Tools we work with</h2>
+
+      <div class="toolbox reveal">
+        <span>Python</span>
+        <span>JavaScript</span>
+        <span>React</span>
+        <span>Angular</span>
+        <span>Tailwind CSS</span>
+        <span>Java</span>
+        <span>SQL</span>
+        <span>Gemini API</span>
+        <span>OpenAI API</span>
+        <span>TensorFlow</span>
+        <span>PyTorch</span>
+        <span>scikit-learn</span>
+        <span>Docker</span>
+        <span>Git &amp; GitHub</span>
+      </div>
+
+      <p class="mono credentials reveal" data-i18n="stack.credentials">B.Sc. Information Technology, 2026 — Very Good with Honors · Huawei HCIA-AI · Microsoft SC-900</p>
+    </section>
+
+
+    <!-- ===================== CONTACT ===================== -->
+    <section class="section contact" id="contact">
+      <span class="mono reveal" data-i18n="contact.label">05 — Contact</span>
+      <h2 class="section__title reveal" data-i18n="contact.title">Have an idea? Let's make it real.</h2>
+      <p class="lead reveal" data-i18n="contact.lead">Tell us what you need and we will reply with a plan and a quote.</p>
+
+      <p class="reveal">
+        <a class="contact__email" href="mailto:mazen.elharmeel.ai@gmail.com">mazen.elharmeel.ai@gmail.com</a>
+      </p>
+
+      <div class="btn-row btn-row--spaced reveal">
+
+        <!-- Email -->
+        <a class="btn btn--primary" href="mailto:mazen.elharmeel.ai@gmail.com?subject=New%20project">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 5.5A1.5 1.5 0 0 1 3.5 4h17A1.5 1.5 0 0 1 22 5.5v13a1.5 1.5 0 0 1-1.5 1.5h-17A1.5 1.5 0 0 1 2 18.5v-13zm2.2.5L12 12l7.8-6H4.2zM20 7.9l-7.4 5.7a1 1 0 0 1-1.2 0L4 7.9V18h16V7.9z"/></svg>
+          <span data-i18n="contact.emailButton">Email us</span>
+        </a>
+
+        <!-- LinkedIn -->
+        <a class="btn" href="https://linkedin.com/in/mazen-elharmeel-6a01112b9" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          <span>LinkedIn</span>
+        </a>
+
+        <!-- GitHub -->
+        <a class="btn" href="https://github.com/MazenElharmeel-spec" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.921.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          <span>GitHub</span>
+        </a>
+
+      </div>
+    </section>
+
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="footer">
+      <span class="mono" data-i18n="footer.copyright">© 2026 Mazen Elharmeel</span>
+      <span class="mono" data-i18n="footer.location">Based in Egypt · Working worldwide</span>
+    </footer>
+
+  </div>
+
+  <!-- Scripts: translations first, then the main logic -->
+  <script src="js/translations.js"></script>
+  <script src="js/main.js"></script>
+</body>
+
+</html>
