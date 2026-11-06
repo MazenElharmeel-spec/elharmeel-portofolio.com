@@ -1,34 +1,19 @@
 # Mazen Elharmeel — Portfolio
 
-A static website. No build step, no install: open `index.html` in a browser.
+A static personal portfolio. Open `index.html` directly in a browser; there is no build or install step.
 
-## Folder structure
+## Files
 
-```
-mazen-portfolio/
-├── index.html            Page content (all text, sections, links)
-├── css/
-│   └── style.css         All styling, split into numbered sections
-└── js/
-    ├── translations.js   Arabic text (English stays in index.html)
-    └── main.js           Scroll animation, theme toggle, language switch
-```
+- `index.html` — portfolio content and project links.
+- `css/style.css` — visual system, responsive layouts, and motion styling, including the project-card screenshot-to-source reveal on hover or keyboard focus.
+- `js/main.js` — scroll reveal, theme switch, and Arabic/English language switch.
+- `js/translations.js` — Arabic translations.
+- `assets/projects/` — project screenshots and artwork used in the work gallery.
+- `distill-demo.html` — separate interactive AI-readability design concept.
+- `assets/fonts/` — self-hosted fonts shared by the portfolio and Distill concept page.
 
-## Common edits
+The screenshots in `assets/projects/` are the project images already published in the corresponding GitHub repositories. Projects without a hosted demo are labeled as local builds or source-only projects.
 
-| I want to...                    | Edit this                                           |
-| ------------------------------- | --------------------------------------------------- |
-| Change text                     | `index.html` (and the Arabic in `js/translations.js`) |
-| Change colors                   | `css/style.css`, section 1 "Design tokens"          |
-| Fix an Arabic translation       | `js/translations.js`                                |
-| Change email / social links     | `index.html`, "Contact" section                     |
-| Add a new project               | Copy the "Selected work" block in `index.html`      |
+## Publish
 
-When you add or change English text, keep the `data-i18n="key"` attribute and add the same key to `js/translations.js`.
-
-## Publish on GitHub Pages
-
-1. Create a public repository named `mazenelharmeel-spec.github.io`.
-2. Upload everything in this folder (keep the `css` and `js` folders).
-3. Settings → Pages → Deploy from a branch → `main` / root → Save.
-4. Visit https://mazenelharmeel-spec.github.io after a minute or two.
+The site can be hosted on GitHub Pages or any static web host. Keep the `css`, `js`, and `assets` folders alongside `index.html` so their relative paths continue to work.

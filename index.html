@@ -4,11 +4,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Mazen Elharmeel — Websites, AI Chatbots &amp; Automation</title>
-  <meta name="description" content="Freelance developer building websites, apps, AI chatbots, agents and automation systems.">
+  <title>Mazen Elharmeel — AI &amp; Full-Stack Engineer</title>
+  <meta name="description" content="Mazen Elharmeel builds dependable AI products, multi-agent workflows, knowledge assistants, and thoughtful web applications.">
 
-  <!-- Fonts: Bricolage Grotesque (English), JetBrains Mono (labels), Cairo (Arabic) -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800&family=JetBrains+Mono:wght@400;500&family=Cairo:wght@400;600;800&display=swap">
+  <!-- Cairo is used for Arabic; English typography is self-hosted with the Distill demo fonts. -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap">
 
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -25,9 +25,9 @@
     <nav class="nav">
       <b class="nav__brand" data-i18n="nav.brand">Mazen Elharmeel</b>
       <div class="nav__links">
-        <a class="nav__link--hide-mobile" href="#services" data-i18n="nav.services">Services</a>
         <a class="nav__link--hide-mobile" href="#work" data-i18n="nav.work">Work</a>
-        <a class="nav__link--hide-mobile" href="#process" data-i18n="nav.process">Process</a>
+        <a class="nav__link--hide-mobile" href="#services" data-i18n="nav.services">Expertise</a>
+        <a class="nav__link--hide-mobile" href="#about" data-i18n="nav.about">About</a>
         <a href="#contact" data-i18n="nav.contact">Contact</a>
         <button class="pill-button" id="language-toggle" aria-label="Language">العربية</button>
         <button class="pill-button" id="theme-toggle" aria-label="Toggle theme" data-i18n="nav.theme">Theme</button>
@@ -37,25 +37,182 @@
 
     <!-- ===================== HERO ===================== -->
     <header class="hero">
-      <div class="reveal">
-        <span class="mono" data-i18n="hero.label">Freelance developer — available for projects</span>
-
-        <h1 class="hero__title" data-i18n="hero.title">We build the web, the apps, and the <em>AI</em> that runs them.</h1>
-
-        <p class="lead" data-i18n="hero.lead">Websites, mobile and web apps, chatbots, AI agents and automation systems for founders and small teams who want something that works, not just something that looks finished.</p>
-
-        <div class="btn-row">
-          <a class="btn btn--primary" href="#contact" data-i18n="hero.start">Start a project</a>
-          <a class="btn" href="#services" data-i18n="hero.services">See services</a>
+      <div class="hero__grid">
+        <div class="hero__copy reveal">
+          <span class="hero__eyebrow"><i></i><span data-i18n="hero.label">AI &amp; full-stack engineer · based in Egypt</span></span>
+          <h1 class="hero__title" data-i18n="hero.title">I build AI products <em>people can trust.</em></h1>
+          <p class="lead" data-i18n="hero.lead">From intelligent knowledge tools to multi-agent workflows, I turn complex ideas into clear, dependable software people can use.</p>
+          <div class="btn-row">
+            <a class="btn btn--primary" href="#work" data-i18n="hero.start">Explore my work</a>
+            <a class="btn btn--quiet" href="#contact" data-i18n="hero.services">Let’s talk</a>
+          </div>
+          <div class="hero__facts" aria-label="Profile highlights">
+            <div><strong>AI</strong><span data-i18n="hero.fact1">systems &amp; agents</span></div>
+            <div><strong>Full-stack</strong><span data-i18n="hero.fact2">from interface to API</span></div>
+            <div><strong>Egypt</strong><span data-i18n="hero.fact3">working worldwide</span></div>
+          </div>
+        </div>
+        <div class="hero__visual reveal" aria-label="Flowstate workflow operations dashboard project preview">
+          <img src="assets/projects/flowstate-approval.png" alt="Flowstate approval review screen for a sensitive AI workflow action">
+          <div class="hero__visual-caption"><span class="hero__live-dot"></span><span><b>Flowstate</b><small data-i18n="hero.visual">Multi-agent workflow platform</small></span><span class="hero__visual-arrow" aria-hidden="true">↗</span></div>
+          <div class="hero__floating"><span class="hero__floating-icon">✳</span><span><b data-i18n="hero.floatingTitle">Human in the loop</b><small data-i18n="hero.floating">Approval before sensitive actions</small></span></div>
         </div>
       </div>
+      <a class="hero__scroll mono" href="#work"><span></span><span data-i18n="hero.scroll">Scroll to explore</span></a>
     </header>
+
+
+    <!-- ===================== SELECTED WORK ===================== -->
+    <section class="section work-section" id="work">
+      <div class="section-heading reveal">
+        <div><span class="mono" data-i18n="work.label">01 — SELECTED BUILDS · 2026</span><h2 class="section__title" data-i18n="work.title">Thoughtful software, built end to end.</h2></div>
+        <p data-i18n="work.intro">A selection of AI platforms, knowledge tools, games, and web products. Each card links to its source; projects without a hosted demo are labelled clearly.</p>
+      </div>
+
+      <div class="projects-grid">
+        <article class="project-card project-card--feature reveal">
+          <a class="project-media" href="https://github.com/MazenElharmeel-spec/flowstate-multi-agent-workflow-platform" target="_blank" rel="noopener" aria-label="View Flowstate on GitHub">
+            <img src="assets/projects/flowstate-overview.png" alt="Flowstate AI operations console with a multi-agent workflow graph and monitoring panels" loading="lazy">
+            <div class="project-code" aria-hidden="true">
+              <div class="project-code__head"><span>backend/app/agents/action.py</span><span>PY</span></div>
+              <div class="project-code__lines">
+                <span><i>class</i> ActionExecutionOutput(BaseModel):</span>
+                <span>  executed_tools: list[str] = Field(</span>
+                <span>    default_factory=list</span>
+                <span>  )</span>
+                <span>  summary: str = Field(...)</span>
+                <span>&nbsp;</span>
+                <span>ACTION_ALLOWLIST: list[str] = [</span>
+                <span>  <em>"issue_refund"</em>, <em>"send_email"</em>,</span>
+                <span>  <em>"update_ticket_status"</em>,</span>
+                <span>]</span>
+              </div>
+              <span class="project-code__foot">SOURCE PREVIEW · PYTHON</span>
+            </div>
+            <span class="project-scan" aria-hidden="true"></span>
+            <span class="project-media__label"><i></i><span data-i18n="project.flow.media">Operations overview</span></span>
+          </a>
+          <div class="project-copy">
+            <div class="project-kicker"><span>01 / AI SYSTEMS</span><span data-i18n="project.local">LOCAL DEMO</span></div>
+            <h3>Flowstate <span data-i18n="project.flow.type">Multi-agent workflow platform</span></h3>
+            <p data-i18n="project.flow.text">Durable AI workflows with checkpoints, retries, real-time run events, and human approval gates for sensitive actions.</p>
+            <div class="project-tags"><span>FastAPI</span><span>LangGraph</span><span>React</span><span>PostgreSQL</span><span>Redis</span></div>
+            <div class="project-actions"><a class="project-link" href="https://github.com/MazenElharmeel-spec/flowstate-multi-agent-workflow-platform" target="_blank" rel="noopener"><span data-i18n="project.source">View source</span><span aria-hidden="true">↗</span></a><span class="project-note" data-i18n="project.flow.note">Synthetic sandbox data · no hosted demo</span></div>
+          </div>
+        </article>
+
+        <article class="project-card reveal">
+          <a class="project-media project-media--mint" href="https://github.com/MazenElharmeel-spec/enterprise-rag-knowledge-assistant" target="_blank" rel="noopener" aria-label="View Atlas Knowledge Assistant on GitHub">
+            <img src="assets/projects/atlas-dashboard.png" alt="Atlas access-aware knowledge assistant workspace with document library, question search, and answer panel" loading="lazy">
+            <div class="project-code" aria-hidden="true">
+              <div class="project-code__head"><span>backend/app/retrieval/hybrid.py</span><span>PY</span></div>
+              <div class="project-code__lines">
+                <span>memberships = await session.execute(</span>
+                <span>  text(</span>
+                <span>    <em>"SELECT group_id FROM memberships WHERE user_id = :user_id"</em></span>
+                <span>  ), {<em>"user_id"</em>: user.id}</span>
+                <span>)</span>
+                <span>principals = [</span>
+                <span>  f<em>"user:{user.id}"</em>,</span>
+                <span>  f<em>"org:{user.organization_id}"</em>,</span>
+                <span>]</span>
+              </div>
+              <span class="project-code__foot">SOURCE PREVIEW · PYTHON</span>
+            </div>
+            <span class="project-scan" aria-hidden="true"></span>
+            <span class="project-media__label"><i></i><span data-i18n="project.atlas.media">Workspace · Alice’s view</span></span>
+          </a>
+          <div class="project-copy">
+            <div class="project-kicker"><span>02 / KNOWLEDGE AI</span><span data-i18n="project.local">LOCAL DEMO</span></div>
+            <h3>Atlas <span data-i18n="project.atlas.type">Enterprise knowledge assistant</span></h3>
+            <p data-i18n="project.atlas.text">A permission-aware document assistant with streamed answers, source citations, access controls, and retrieval evaluation.</p>
+            <div class="project-tags"><span>FastAPI</span><span>React</span><span>PostgreSQL</span><span>pgvector</span><span>Docker</span></div>
+            <div class="project-actions"><a class="project-link" href="https://github.com/MazenElharmeel-spec/enterprise-rag-knowledge-assistant" target="_blank" rel="noopener"><span data-i18n="project.source">View source</span><span aria-hidden="true">↗</span></a><span class="project-note" data-i18n="project.atlas.note">Synthetic documents · no hosted demo</span></div>
+          </div>
+        </article>
+
+        <article class="project-card reveal">
+          <a class="project-media project-media--dark" href="https://github.com/MazenElharmeel-spec/evalscope-llm-evaluation-monitoring" target="_blank" rel="noopener" aria-label="View EvalScope on GitHub">
+            <img src="assets/projects/evalscope-overview.png" alt="EvalScope LLM dashboard showing evaluation metrics, model comparisons, quality charts, and recent alerts" loading="lazy">
+            <div class="project-code" aria-hidden="true">
+              <div class="project-code__head"><span>backend/app/retrieval.py</span><span>PY</span></div>
+              <div class="project-code__lines">
+                <span><i>TOKEN_RE</i> = re.compile(</span>
+                <span>  r<em>"[a-z0-9]+(?:['’-][a-z0-9]+)?"</em>,</span>
+                <span>  re.IGNORECASE</span>
+                <span>)</span>
+                <span>&nbsp;</span>
+                <span><i>def</i> tokenize(text: str) -&gt; list[str]:</span>
+                <span>  <i>return</i> [</span>
+                <span>    token.casefold()</span>
+                <span>    <i>for</i> token <i>in</i> TOKEN_RE.findall(text)</span>
+                <span>    <i>if</i> token.casefold() not in STOPWORDS</span>
+                <span>  ]</span>
+              </div>
+              <span class="project-code__foot">SOURCE PREVIEW · PYTHON</span>
+            </div>
+            <span class="project-scan" aria-hidden="true"></span>
+            <span class="project-media__label"><i></i><span data-i18n="project.eval.media">LLM performance dashboard</span></span>
+          </a>
+          <div class="project-copy">
+            <div class="project-kicker"><span>03 / EVALUATION</span><span data-i18n="project.local">LOCAL DEMO</span></div>
+            <h3>EvalScope <span data-i18n="project.eval.type">LLM evaluation &amp; monitoring</span></h3>
+            <p data-i18n="project.eval.text">A model-evaluation dashboard paired with a runnable retrieval demo for testing grounded answers, citations, abstention, and retrieval quality.</p>
+            <div class="project-tags"><span>TypeScript</span><span>React</span><span>FastAPI</span><span>BM25</span><span>SQLite</span></div>
+            <div class="project-actions"><a class="project-link" href="https://github.com/MazenElharmeel-spec/evalscope-llm-evaluation-monitoring" target="_blank" rel="noopener"><span data-i18n="project.source">View source</span><span aria-hidden="true">↗</span></a><span class="project-note" data-i18n="project.eval.note">Dashboard metrics are illustrative</span></div>
+          </div>
+        </article>
+
+        <article class="project-card project-card--orbis reveal">
+          <a class="project-media project-media--space" href="https://github.com/MazenElharmeel-spec/orbis-number-run" target="_blank" rel="noopener" aria-label="View Orbis Number Run on GitHub">
+            <div class="orbis-scene"><div class="orbis-orbit orbit-one"></div><div class="orbis-orbit orbit-two"></div><div class="orbis-stars"></div><img src="assets/projects/orbis-number-run.png" alt="Orbis astronaut character artwork" loading="lazy"><span class="orbis-equation">18 × 4 = ?</span><span class="orbis-gate"><b>72</b></span></div>
+            <div class="project-code" aria-hidden="true">
+              <div class="project-code__head"><span>src/equations.js</span><span>JS</span></div>
+              <div class="project-code__lines">
+                <span><i>function</i> createEquation(random, stage) {</span>
+                <span>  <i>const</i> operations =</span>
+                <span>    getAvailableOperations(stage);</span>
+                <span>  <i>const</i> operation = operations[</span>
+                <span>    randomInteger(random, 0,</span>
+                <span>      operations.length - 1)];</span>
+                <span>  ...</span>
+                <span>  <i>return</i> {</span>
+                <span>    problem: <em>`${left} ${symbol} ${right}`</em>,</span>
+                <span>    choices,</span>
+                <span>  };</span>
+                <span>}</span>
+              </div>
+              <span class="project-code__foot">SOURCE PREVIEW · JAVASCRIPT</span>
+            </div>
+            <span class="project-scan" aria-hidden="true"></span>
+            <span class="project-media__label"><i></i><span data-i18n="project.orbis.media">Canvas game · character artwork</span></span>
+          </a>
+          <div class="project-copy">
+            <div class="project-kicker"><span>04 / INTERACTIVE</span><span data-i18n="project.browser">BROWSER BUILD</span></div>
+            <h3>Orbis Number Run <span data-i18n="project.orbis.type">Space math runner</span></h3>
+            <p data-i18n="project.orbis.text">A fast canvas game with lane-switching movement, generated math gates, a custom astronaut runner, and mobile swipe controls.</p>
+            <div class="project-tags"><span>JavaScript</span><span>Canvas</span><span>Game systems</span><span>Mobile input</span></div>
+            <div class="project-actions"><a class="project-link" href="https://github.com/MazenElharmeel-spec/orbis-number-run" target="_blank" rel="noopener"><span data-i18n="project.source">View source</span><span aria-hidden="true">↗</span></a><span class="project-note" data-i18n="project.orbis.note">Open locally from the repository</span></div>
+          </div>
+        </article>
+      </div>
+
+      <div class="more-work reveal">
+        <div class="more-work__heading"><span class="mono" data-i18n="work.moreLabel">MORE BUILDS</span><p data-i18n="work.moreText">Additional product and web work from my GitHub.</p></div>
+        <div class="more-work__list">
+          <a href="https://github.com/MazenElharmeel-spec/movie-village" target="_blank" rel="noopener" class="more-project"><span class="more-project__icon more-project__icon--film">MV</span><span><b>Movies Village</b><small data-i18n="project.movie.text">PHP/MySQL movie catalog with search, accounts, favorites, and admin publishing.</small></span><i>↗</i></a>
+          <a href="https://github.com/MazenElharmeel-spec/number-run" target="_blank" rel="noopener" class="more-project"><span class="more-project__icon more-project__icon--run">NR</span><span><b>Number Run</b><small data-i18n="project.run.text">A self-contained canvas runner with generated equations, answer gates, and difficulty levels.</small></span><i>↗</i></a>
+          <a href="https://github.com/MazenElharmeel-spec/BBSudio" target="_blank" rel="noopener" class="more-project"><span class="more-project__icon more-project__icon--studio">BB</span><span><b>BBSudio</b><small data-i18n="project.bb.text">Arabic-English creative content studio website with selected work, services, and packages.</small></span><i>↗</i></a>
+          <div class="more-project more-project--edu"><span class="more-project__icon more-project__icon--edu">A+</span><span><b>EduConnect</b><small data-i18n="project.edu.text">Graduation team project: online learning platform with an AI teacher assistant. Graded A+.</small></span><span class="more-project__badge" data-i18n="project.team">TEAM PROJECT</span></div>
+        </div>
+      </div>
+    </section>
 
 
     <!-- ===================== SERVICES ===================== -->
     <section class="section" id="services">
-      <span class="mono reveal" data-i18n="services.label">01 — Services</span>
-      <h2 class="section__title reveal" data-i18n="services.title">What we can build for you</h2>
+      <span class="mono reveal" data-i18n="services.label">02 — Expertise</span>
+      <h2 class="section__title reveal" data-i18n="services.title">AI products, web apps &amp; integrations</h2>
 
       <div class="services">
 
@@ -98,44 +255,6 @@
       </div>
     </section>
 
-
-    <!-- ===================== SELECTED WORK ===================== -->
-    <section class="section" id="work">
-      <span class="mono reveal" data-i18n="work.label">02 — Selected work</span>
-      <h2 class="section__title reveal" data-i18n="work.title">Proof, not promises</h2>
-
-      <div class="work reveal">
-
-        <!-- Left panel: the project -->
-        <div class="work__panel">
-          <span class="mono" data-i18n="work.kind">Graduation project</span>
-          <h3 class="work__title">EduConnect</h3>
-          <p class="work__text" data-i18n="work.text">A smart online learning platform with an AI teacher assistant that supports students through natural conversation. We worked on the platform's AI functionality and its integration with the rest of the product. Graded A+ (Excellent).</p>
-
-          <div class="tags">
-            <span>Gemini API</span>
-            <span>NLP</span>
-            <span data-i18n="work.tag.agents">AI agents</span>
-            <span data-i18n="work.tag.genai">Generative AI</span>
-            <span data-i18n="work.tag.team">Teamwork</span>
-          </div>
-        </div>
-
-        <!-- Right panel: what the project shows -->
-        <div class="work__panel">
-          <span class="mono" data-i18n="work.shows">What it shows</span>
-          <ul class="work__points">
-            <li data-i18n="work.point1">Conversational AI wired into a real product</li>
-            <li data-i18n="work.point2">Agent-style assistant behaviour, not a plain Q&amp;A box</li>
-            <li data-i18n="work.point3">Working inside a team and shipping together</li>
-            <li data-i18n="work.point4">Your project could be the next case study here</li>
-          </ul>
-        </div>
-
-      </div>
-    </section>
-
-
     <!-- ===================== PROCESS ===================== -->
     <section class="section" id="process">
       <span class="mono reveal" data-i18n="process.label">03 — Process</span>
@@ -171,25 +290,40 @@
     </section>
 
 
+    <!-- ===================== ABOUT ===================== -->
+    <section class="section about" id="about">
+      <div class="about__copy reveal">
+        <span class="mono" data-i18n="about.label">A LITTLE ABOUT ME</span>
+        <h2 class="section__title" data-i18n="about.title">Engineering depth.<br>Product thinking.</h2>
+        <p data-i18n="about.text">I enjoy taking a problem from its first sketch through interface, API, data, and deployment. My recent work focuses on AI-assisted products that are useful, observable, and careful about access and evidence.</p>
+      </div>
+      <div class="about__details reveal">
+        <div><span class="mono" data-i18n="about.education.label">EDUCATION</span><b data-i18n="about.education.value">B.Sc. Information Technology</b><small data-i18n="about.education.note">Very Good with Honors · 2026</small></div>
+        <div><span class="mono" data-i18n="about.location.label">LOCATION</span><b data-i18n="about.location.value">Egypt · Remote worldwide</b><small data-i18n="about.location.note">Open to thoughtful collaborations</small></div>
+        <div><span class="mono" data-i18n="about.cert.label">CERTIFICATIONS</span><b>Huawei HCIA-AI</b><small>Microsoft SC-900</small></div>
+      </div>
+    </section>
+
+
     <!-- ===================== TOOLBOX ===================== -->
     <section class="section" id="stack">
       <span class="mono reveal" data-i18n="stack.label">04 — Toolbox</span>
-      <h2 class="section__title reveal" data-i18n="stack.title">Tools we work with</h2>
+      <h2 class="section__title reveal" data-i18n="stack.title">Tools I work with</h2>
 
       <div class="toolbox reveal">
         <span>Python</span>
         <span>JavaScript</span>
+        <span>TypeScript</span>
         <span>React</span>
-        <span>Angular</span>
-        <span>Tailwind CSS</span>
-        <span>Java</span>
+        <span>FastAPI</span>
+        <span>LangGraph</span>
         <span>SQL</span>
+        <span>PostgreSQL</span>
+        <span>Redis</span>
+        <span>Docker</span>
         <span>Gemini API</span>
         <span>OpenAI API</span>
-        <span>TensorFlow</span>
-        <span>PyTorch</span>
-        <span>scikit-learn</span>
-        <span>Docker</span>
+        <span>PHP</span>
         <span>Git &amp; GitHub</span>
       </div>
 
@@ -200,8 +334,8 @@
     <!-- ===================== CONTACT ===================== -->
     <section class="section contact" id="contact">
       <span class="mono reveal" data-i18n="contact.label">05 — Contact</span>
-      <h2 class="section__title reveal" data-i18n="contact.title">Have an idea? Let's make it real.</h2>
-      <p class="lead reveal" data-i18n="contact.lead">Tell us what you need and we will reply with a plan and a quote.</p>
+      <h2 class="section__title reveal" data-i18n="contact.title">Have an idea worth building?</h2>
+      <p class="lead reveal" data-i18n="contact.lead">Send me a short note about it and I’ll get back to you with a clear next step.</p>
 
       <p class="reveal">
         <a class="contact__email" href="mailto:mazen.elharmeel.ai@gmail.com">mazen.elharmeel.ai@gmail.com</a>
@@ -212,7 +346,7 @@
         <!-- Email -->
         <a class="btn btn--primary" href="mailto:mazen.elharmeel.ai@gmail.com?subject=New%20project">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 5.5A1.5 1.5 0 0 1 3.5 4h17A1.5 1.5 0 0 1 22 5.5v13a1.5 1.5 0 0 1-1.5 1.5h-17A1.5 1.5 0 0 1 2 18.5v-13zm2.2.5L12 12l7.8-6H4.2zM20 7.9l-7.4 5.7a1 1 0 0 1-1.2 0L4 7.9V18h16V7.9z"/></svg>
-          <span data-i18n="contact.emailButton">Email us</span>
+          <span data-i18n="contact.emailButton">Email me</span>
         </a>
 
         <!-- LinkedIn -->
