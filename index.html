@@ -195,12 +195,47 @@
             <div class="project-actions"><a class="project-link" href="https://github.com/MazenElharmeel-spec/orbis-number-run" target="_blank" rel="noopener"><span data-i18n="project.source">View source</span><span aria-hidden="true">↗</span></a><span class="project-note" data-i18n="project.orbis.note">Open locally from the repository</span></div>
           </div>
         </article>
+
+        <article class="project-card project-card--feature project-card--movie reveal">
+          <a class="project-media project-media--movie" href="https://github.com/MazenElharmeel-spec/movie-village" target="_blank" rel="noopener" aria-label="View Movies Village on GitHub">
+            <div class="mv-preview" aria-hidden="true">
+              <div class="mv-preview__nav"><b><span>◉</span> MOVIES <i>VILLAGE</i></b><span class="mv-preview__links">HOME&nbsp;&nbsp; MOVIES&nbsp;&nbsp; TRENDING</span><span class="mv-preview__search">⌕&nbsp; Search movies</span></div>
+              <div class="mv-preview__backdrop" role="img" aria-label="Movie Village banner artwork featuring an action film cast"></div>
+              <div class="mv-preview__hero"><span class="mv-preview__eyebrow">DISCOVER YOUR NEXT MOVIE</span><b>Stories worth<br>staying in for.</b><span>Explore the collection <i>→</i></span></div>
+              <div class="mv-preview__shelf"><div class="mv-preview__shelf-head"><b>POPULAR TONIGHT</b><span>VIEW ALL&nbsp; ↗</span></div><div class="mv-preview__posters"><img src="assets/projects/movies-village-oppenheimer.jpg" alt="Oppenheimer poster" loading="lazy"><img src="assets/projects/movies-village-flash.jpg" alt="The Flash poster" loading="lazy"><img src="assets/projects/movies-village-inception.jpg" alt="Inception poster" loading="lazy"><img src="assets/projects/movies-village-jumanji.jpg" alt="Jumanji poster" loading="lazy"></div></div>
+            </div>
+            <div class="project-code" aria-hidden="true">
+              <div class="project-code__head"><span>includes/movie-card.php</span><span>PHP</span></div>
+              <div class="project-code__lines">
+                <span>&lt;article class=<em>"movie-card"</em>&gt;</span>
+                <span>  &lt;a href=&lt;?= h($movieUrl) ?&gt;&gt;</span>
+                <span>    &lt;img class=<em>"movie-poster"</em></span>
+                <span>      src=&lt;?= h(asset_url($poster)) ?&gt;&gt;</span>
+                <span>    &lt;h3&gt;</span>
+                <span>      &lt;?= h($movie[<em>'title'</em>]) ?&gt;</span>
+                <span>    &lt;/h3&gt;</span>
+                <span>  &lt;/a&gt;</span>
+                <span>  &lt;p&gt;&lt;?= h($movie[<em>'genre'</em>]) ?&gt;&lt;/p&gt;</span>
+                <span>&lt;/article&gt;</span>
+              </div>
+              <span class="project-code__foot">SOURCE PREVIEW · PHP</span>
+            </div>
+            <span class="project-scan" aria-hidden="true"></span>
+            <span class="project-media__label"><i></i><span data-i18n="project.movie.media">Catalog preview · repository artwork</span></span>
+          </a>
+          <div class="project-copy">
+            <div class="project-kicker"><span>05 / WEB APP</span><span data-i18n="project.local">LOCAL DEMO</span></div>
+            <h3>Movies Village <span data-i18n="project.movie.type">Movie discovery &amp; catalog</span></h3>
+            <p data-i18n="project.movie.detail">A PHP/MySQL movie catalog with searchable titles, individual film pages, account registration, favorites, and admin-managed publishing.</p>
+            <div class="project-tags"><span>PHP</span><span>MySQL</span><span>Catalog search</span><span>User accounts</span></div>
+            <div class="project-actions"><a class="project-link" href="https://github.com/MazenElharmeel-spec/movie-village" target="_blank" rel="noopener"><span data-i18n="project.source">View source</span><span aria-hidden="true">↗</span></a><span class="project-note" data-i18n="project.movie.note">Local PHP/MySQL setup</span></div>
+          </div>
+        </article>
       </div>
 
       <div class="more-work reveal">
         <div class="more-work__heading"><span class="mono" data-i18n="work.moreLabel">MORE BUILDS</span><p data-i18n="work.moreText">Additional product and web work from my GitHub.</p></div>
         <div class="more-work__list">
-          <a href="https://github.com/MazenElharmeel-spec/movie-village" target="_blank" rel="noopener" class="more-project"><span class="more-project__icon more-project__icon--film">MV</span><span><b>Movies Village</b><small data-i18n="project.movie.text">PHP/MySQL movie catalog with search, accounts, favorites, and admin publishing.</small></span><i>↗</i></a>
           <a href="https://github.com/MazenElharmeel-spec/number-run" target="_blank" rel="noopener" class="more-project"><span class="more-project__icon more-project__icon--run">NR</span><span><b>Number Run</b><small data-i18n="project.run.text">A self-contained canvas runner with generated equations, answer gates, and difficulty levels.</small></span><i>↗</i></a>
           <a href="https://github.com/MazenElharmeel-spec/BBSudio" target="_blank" rel="noopener" class="more-project"><span class="more-project__icon more-project__icon--studio">BB</span><span><b>BBSudio</b><small data-i18n="project.bb.text">Arabic-English creative content studio website with selected work, services, and packages.</small></span><i>↗</i></a>
           <div class="more-project more-project--edu"><span class="more-project__icon more-project__icon--edu">A+</span><span><b>EduConnect</b><small data-i18n="project.edu.text">Graduation team project: online learning platform with an AI teacher assistant. Graded A+.</small></span><span class="more-project__badge" data-i18n="project.team">TEAM PROJECT</span></div>
