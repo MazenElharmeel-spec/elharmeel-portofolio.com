@@ -7,22 +7,23 @@
    Translations live in js/translations.js
    ========================================================================== */
 
-
 /* 1. SCROLL REVEAL
    -------------------------------------------------------------------------- */
-const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('is-visible');
-      revealObserver.unobserve(entry.target); // animate only once
-    }
-  });
-}, { threshold: 0.12 });
+const revealObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        revealObserver.unobserve(entry.target); // animate only once
+      }
+    });
+  },
+  { threshold: 0.12 },
+);
 
 document.querySelectorAll('.reveal').forEach((element) => {
   revealObserver.observe(element);
 });
-
 
 /* 2. THEME TOGGLE
    -------------------------------------------------------------------------- */
@@ -34,7 +35,6 @@ themeButton.addEventListener('click', () => {
   const currentTheme = root.getAttribute('data-theme') || (deviceIsDark ? 'dark' : 'light');
   root.setAttribute('data-theme', currentTheme === 'dark' ? 'light' : 'dark');
 });
-
 
 /* 3. LANGUAGE SWITCH (English <-> Arabic)
    -------------------------------------------------------------------------- */
@@ -58,7 +58,7 @@ function setLanguage(language) {
   translatable.forEach((element) => {
     const key = element.dataset.i18n;
     element.innerHTML = isArabic
-      ? (TRANSLATIONS_AR[key] || element.dataset.english)
+      ? TRANSLATIONS_AR[key] || element.dataset.english
       : element.dataset.english;
   });
 

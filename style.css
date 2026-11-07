@@ -19,18 +19,17 @@
    16. Responsive
    ========================================================================== */
 
-
 /* 1. DESIGN TOKENS
    Change colors here and the whole site updates.
    -------------------------------------------------------------------------- */
 :root {
-  --bg: #f4f1ea;          /* page background */
-  --ink: #16181a;         /* main text */
-  --mute: #666a6c;        /* secondary text */
-  --line: #d9d4c8;        /* borders */
-  --card: #fbf9f4;        /* card background */
-  --accent: #0f6b57;      /* brand green */
-  --accent-ink: #ffffff;  /* text on accent */
+  --bg: #f4f1ea; /* page background */
+  --ink: #16181a; /* main text */
+  --mute: #666a6c; /* secondary text */
+  --line: #d9d4c8; /* borders */
+  --card: #fbf9f4; /* card background */
+  --accent: #0f6b57; /* brand green */
+  --accent-ink: #ffffff; /* text on accent */
 
   /* keep content clear of phone notches */
   padding-top: env(safe-area-inset-top, 0px);
@@ -39,7 +38,7 @@
 
 /* Dark mode: follows the device unless the visitor picked a theme manually */
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
+  :root:not([data-theme='light']) {
     --bg: #101211;
     --ink: #ece9e1;
     --mute: #9a9e9b;
@@ -51,7 +50,7 @@
 }
 
 /* Dark mode: chosen with the Theme button */
-:root[data-theme="dark"] {
+:root[data-theme='dark'] {
   --bg: #101211;
   --ink: #ece9e1;
   --mute: #9a9e9b;
@@ -60,7 +59,6 @@
   --accent: #4fd1a8;
   --accent-ink: #07120e;
 }
-
 
 /* 2. BASE
    -------------------------------------------------------------------------- */
@@ -97,7 +95,6 @@ a {
   color: var(--mute);
 }
 
-
 /* 3. LAYOUT HELPERS
    -------------------------------------------------------------------------- */
 .wrap {
@@ -105,7 +102,6 @@ a {
   margin: 0 auto;
   padding: 0 clamp(20px, 5vw, 48px);
 }
-
 
 /* 4. NAVIGATION
    -------------------------------------------------------------------------- */
@@ -149,7 +145,6 @@ a {
   cursor: pointer;
 }
 
-
 /* 5. HERO
    -------------------------------------------------------------------------- */
 .hero {
@@ -175,7 +170,6 @@ a {
   color: var(--mute);
   margin: 0 0 30px;
 }
-
 
 /* 6. BUTTONS
    -------------------------------------------------------------------------- */
@@ -218,7 +212,6 @@ a {
   flex: none;
 }
 
-
 /* 7. SECTIONS (shared)
    -------------------------------------------------------------------------- */
 .section {
@@ -234,13 +227,12 @@ a {
   max-width: 14em;
 }
 
-
 /* 8. SERVICES GRID
    -------------------------------------------------------------------------- */
 .services {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-  gap: 1px;                       /* the gap shows the background as thin lines */
+  gap: 1px; /* the gap shows the background as thin lines */
   background: var(--line);
   border: 1px solid var(--line);
 }
@@ -266,7 +258,6 @@ a {
   color: var(--mute);
   font-size: 0.97rem;
 }
-
 
 /* 9. SELECTED WORK
    -------------------------------------------------------------------------- */
@@ -318,7 +309,6 @@ a {
   font-size: 0.82rem;
 }
 
-
 /* 10. PROCESS STEPS
    -------------------------------------------------------------------------- */
 .steps {
@@ -343,7 +333,6 @@ a {
   font-size: 0.95rem;
 }
 
-
 /* 11. TOOLBOX
    -------------------------------------------------------------------------- */
 .toolbox {
@@ -364,7 +353,6 @@ a {
   margin-top: 28px;
 }
 
-
 /* 12. CONTACT
    -------------------------------------------------------------------------- */
 .contact .section__title {
@@ -378,7 +366,6 @@ a {
   color: var(--accent);
 }
 
-
 /* 13. FOOTER
    -------------------------------------------------------------------------- */
 .footer {
@@ -390,14 +377,15 @@ a {
   gap: 12px;
 }
 
-
 /* 14. SCROLL ANIMATION
    Elements with class "reveal" fade in when scrolled into view (see js/main.js)
    -------------------------------------------------------------------------- */
 .reveal {
   opacity: 0;
   transform: translateY(18px);
-  transition: opacity 0.7s, transform 0.7s;
+  transition:
+    opacity 0.7s,
+    transform 0.7s;
 }
 
 .reveal.is-visible {
@@ -412,19 +400,22 @@ a {
     transform: none;
     transition: none;
   }
-  html { scroll-behavior: auto; }
-  .btn { transition: none; }
+  html {
+    scroll-behavior: auto;
+  }
+  .btn {
+    transition: none;
+  }
 }
-
 
 /* 15. ARABIC / RIGHT-TO-LEFT
    js/main.js sets dir="rtl" on <html> when Arabic is chosen.
    -------------------------------------------------------------------------- */
-[dir="rtl"] body {
+[dir='rtl'] body {
   font-family: 'Cairo', system-ui, sans-serif;
 }
 
-[dir="rtl"] .mono {
+[dir='rtl'] .mono {
   font-family: 'Cairo', sans-serif;
   font-size: 0.85rem;
   letter-spacing: 0;
@@ -432,19 +423,18 @@ a {
 }
 
 /* Tight letter-spacing breaks Arabic letter joining, so reset it */
-[dir="rtl"] .hero__title,
-[dir="rtl"] .section__title,
-[dir="rtl"] .service__title,
-[dir="rtl"] .step__title,
-[dir="rtl"] .work__title,
-[dir="rtl"] .nav__brand {
+[dir='rtl'] .hero__title,
+[dir='rtl'] .section__title,
+[dir='rtl'] .service__title,
+[dir='rtl'] .step__title,
+[dir='rtl'] .work__title,
+[dir='rtl'] .nav__brand {
   letter-spacing: 0;
 }
 
-[dir="rtl"] .hero__title {
+[dir='rtl'] .hero__title {
   line-height: 1.2;
 }
-
 
 /* 16. RESPONSIVE
    -------------------------------------------------------------------------- */

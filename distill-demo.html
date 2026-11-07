@@ -1,81 +1,1345 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#eef0f2">
-  <title>Distill — Built for people. Read by machines.</title>
-  <meta name="description" content="An interactive concept demo showing how Distill turns rich web pages into token-light HTML for AI agents.">
-  <style>
-    @font-face{font-family:Inter;src:url("assets/fonts/inter-latin.woff2") format("woff2");font-style:normal;font-weight:300 600;font-display:swap}
-    @font-face{font-family:Newsreader;src:url("assets/fonts/newsreader-latin.woff2") format("woff2");font-style:normal;font-weight:400;font-display:swap}
-    @font-face{font-family:Newsreader;src:url("assets/fonts/newsreader-italic-latin.woff2") format("woff2");font-style:italic;font-weight:400;font-display:swap}
-    @font-face{font-family:"IBM Plex Mono";src:url("assets/fonts/ibm-plex-mono-400-latin.woff2") format("woff2");font-style:normal;font-weight:400;font-display:swap}
-    @font-face{font-family:"IBM Plex Mono";src:url("assets/fonts/ibm-plex-mono-500-latin.woff2") format("woff2");font-style:normal;font-weight:500;font-display:swap}
-    :root{--bg:#eef0f2;--ink:#0f1115;--body:#2a2e35;--muted:#8b9098;--code:#7a7f88;--comment:#b3b8bf;--hot:#ff5a1f;--hot-soft:#ffe1d3;--sans:Inter,system-ui,sans-serif;--serif:Newsreader,Georgia,serif;--mono:"IBM Plex Mono",ui-monospace,monospace;--cw:46vw;--ch:52vh;--gap:4.75vw;--top:40.2vh;color-scheme:light}
-    *{box-sizing:border-box}html,body{width:100%;height:100%;margin:0}body{overflow:hidden;background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}button,a{-webkit-tap-highlight-color:transparent}.stage{position:absolute;inset:0;height:100svh;overflow:hidden;background:var(--bg)}
-    .topbar{height:56px;padding:0 20px;display:flex;align-items:center;gap:56px;position:relative;z-index:5;color:var(--body)}.brand{display:flex;align-items:center;gap:8px;color:var(--ink);font-weight:600;font-size:23px;letter-spacing:-.035em;text-decoration:none}.brand svg{width:19px;height:23px}.links,.actions{display:flex;align-items:center}.links{gap:30px}.links a,.actions a{font-size:13px;font-weight:500;color:inherit;text-decoration:none}.links a{display:flex;align-items:center;gap:6px}.chev{width:8px;height:5px;opacity:.7}.actions{margin-left:auto;gap:20px;font-size:12.5px}.actions .trial,.actions .demo{height:32px;padding:0 17px;display:inline-flex;align-items:center;border-radius:30px}.actions .trial{border:1px solid #c4c9cf;background:rgba(255,255,255,.35)}.actions .demo,.hero-button{background:var(--hot);color:white}
-    .hero-copy{position:absolute;left:8.9vw;right:8.9vw;top:92px;display:grid;grid-template-columns:1fr 34vw;gap:4vw;z-index:2}.eyebrow{font:500 11.5px var(--mono);letter-spacing:.06em;color:var(--body)}h1{font:400 clamp(30px,3vw,58px)/1.05 var(--serif);letter-spacing:-.025em;margin:14px 0 0;max-width:13em}h1 em{font-style:italic}.hero-side p{font:400 clamp(14px,1.05vw,19px)/1.55 var(--sans);color:var(--body);max-width:34vw;margin:2px 0 20px}.hero-button{border:0;border-radius:30px;padding:0 22px;height:40px;font:500 13px var(--sans);text-decoration:none;display:inline-flex;align-items:center;transition:transform .35s cubic-bezier(.2,.8,.2,1)}.hero-button:hover{transform:translateY(-2px)}
-    .belt{position:absolute;left:0;right:0;top:calc(var(--top) - 70px);height:calc(var(--ch) + 140px);cursor:grab;touch-action:pan-y;user-select:none}.belt.dragging{cursor:grabbing}.codes,.cards,.fx{position:absolute;inset:0}.codes{mask-image:linear-gradient(90deg,transparent 0,#000 24vw);-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 24vw);z-index:1}.cards{z-index:2}.fx{z-index:3;pointer-events:none;width:100%;height:100%}.card,.code{position:absolute;left:0;top:70px;width:var(--cw);height:var(--ch);transform:translate3d(0,0,0)}.card{overflow:hidden;border-radius:1.6vw;color:white;background:#1b1311;container-type:inline-size;will-change:transform,clip-path;isolation:isolate}.code{overflow:hidden;white-space:pre;color:var(--code);container-type:inline-size;pointer-events:none}.code pre{position:absolute;inset:0 auto auto 0;margin:0;width:49%;font:400 1.56cqw/1.39 var(--mono);white-space:pre-wrap}.code .meta{left:51%;width:49%;color:var(--comment)}
-    .k-nav{position:absolute;top:4cqw;left:4.4cqw;right:4.4cqw;display:flex;justify-content:space-between;align-items:center;z-index:2}.k-logo{display:flex;align-items:center;gap:1.3cqw;font:500 4.6cqw var(--sans);letter-spacing:-.03em}.mountain{width:5.4cqw;height:4.2cqw;overflow:visible}.k-menu{display:flex;align-items:center;gap:3.4cqw;font:500 1.32cqw var(--sans);letter-spacing:.14em;opacity:.86}.k-menu span{white-space:nowrap}.k-menu .active{border:1px solid rgba(255,255,255,.6);border-radius:4cqw;padding:.7cqw 1.6cqw;margin:-.7cqw -1.6cqw}.card-home{background-size:cover;background-position:center}.card-home:before,.card-case:before,.card-alloy:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,10,4,.25),transparent 30%,rgba(20,10,4,.55));z-index:0}.home-bottom{position:absolute;left:4.4cqw;right:4.4cqw;bottom:4.8cqw;display:flex;align-items:flex-end;justify-content:space-between}.stats{display:flex;gap:4cqw}.stat{display:flex;flex-direction:column}.stat+.stat{border-left:1px solid rgba(255,255,255,.35);padding-left:4cqw}.stat strong{font:300 9cqw/.9 var(--sans);letter-spacing:-.04em}.stat small{font:400 1.9cqw var(--sans)}.home-blurb{width:24cqw;font-size:2.2cqw;line-height:1.28}
-    .card-price{color:#2a1406;background:radial-gradient(120% 90% at 20% 110%,#ff6a1f 0,#ff9a4a 35%,#f7c79a 62%,#efd9c4 100%)}.price-main{position:absolute;left:6cqw;top:38%;font:300 13cqw/.95 var(--sans);letter-spacing:-.05em}.price-main sup{font-size:.4em;vertical-align:top;line-height:1.7}.price-sub{position:absolute;left:6.5cqw;top:62%;font:400 1.6cqw var(--mono);opacity:.75}.plans{position:absolute;right:5cqw;top:36%;width:36cqw;font-size:2cqw}.plans div{padding:1.7cqw 0;border-top:1px solid rgba(42,20,6,.25);display:flex;justify-content:space-between}.pilot{position:absolute;left:5cqw;bottom:5cqw;border-radius:5cqw;background:#2a1406;color:#f7e6d6;padding:1.4cqw 3cqw;font-size:1.8cqw}
-    .card-case{background-size:cover;background-position:center}.card-case:before{background:rgba(25,14,8,.45);backdrop-filter:blur(1.4cqw)}.case-copy{position:absolute;left:7cqw;right:7cqw;top:17%}.case-kicker{font:400 1.4cqw var(--mono);letter-spacing:.1em}.case-title{font:400 4.6cqw/1.04 var(--serif);max-width:56cqw;margin:3cqw 0 0}.case-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:3cqw;margin-top:7cqw}.case-stat{border-top:1px solid rgba(255,255,255,.45);padding-top:1.5cqw;font-size:1.7cqw}.case-stat b{display:block;font:300 6cqw/.95 var(--sans);margin-bottom:1cqw}
-    .card-vision{background:#1b1311}.vision-tiles{position:absolute;top:21%;left:5cqw;right:5cqw;height:46%;display:grid;grid-template-columns:1fr 1fr 1.2fr;gap:2cqw}.vision-tiles img{width:100%;height:100%;object-fit:cover;border-radius:1.4cqw}.vision-quote{align-self:center;font:400 3.4cqw/1.08 var(--serif)}.vision-quote em{opacity:.75}.vision-footer{position:absolute;bottom:5cqw;left:5cqw;right:5cqw;display:flex;justify-content:space-between;font-size:1.6cqw;opacity:.7}
-    .card-alloy{background-size:cover;background-position:center}.card-alloy:before{background:linear-gradient(90deg,rgba(20,12,8,.5),rgba(20,12,8,.12))}.alloy-title{position:absolute;left:6cqw;bottom:7cqw;font:400 7.4cqw/.98 var(--serif)}.alloy-title em{display:block}.specs{position:absolute;right:5cqw;bottom:8cqw;width:30cqw;font-size:1.8cqw}.specs div{display:flex;justify-content:space-between;border-top:1px solid rgba(255,255,255,.5);padding:1.5cqw 0}
-    .card-journal{background:#e9ecf1;color:#121a2a}.card-journal .k-menu{color:#121a2a}.journal-title{position:absolute;top:23%;left:5cqw;font:400 5.6cqw/.98 var(--serif)}.journal-title em{display:block;color:#46618e}.posts{position:absolute;left:5cqw;right:5cqw;bottom:5cqw;display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:2.5cqw}.post img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:1.2cqw}.post small{display:block;margin-top:1.4cqw;font:400 1.25cqw var(--mono);color:#6a7891}.post p{margin:.6cqw 0 0;font-size:1.8cqw;line-height:1.15}.card-journal .active{border-color:rgba(18,26,42,.55)}
-    .scan{position:absolute;left:50%;top:calc(var(--top) - 14px);height:calc(var(--ch) + 40px);width:0;z-index:4;pointer-events:none}.scan i{position:absolute;left:-2px;top:0;width:4px;height:100%;border-radius:4px;background:linear-gradient(180deg,#ff7a3c 0,#ff5a1f 12%,#ff5a1f 88%,#ff7a3c 100%);box-shadow:0 0 10px 2px rgba(255,90,31,.85),0 0 34px 10px rgba(255,90,31,.38)}.scan b{position:absolute;left:0;top:4%;width:42px;height:92%;background:linear-gradient(90deg,rgba(255,110,50,.55),transparent);filter:blur(6px)}.badge{position:absolute;left:50%;top:calc(var(--top) - 60px);transform:translateX(-50%);z-index:5;display:flex;align-items:center;flex-direction:column;gap:9px;pointer-events:none}.badge-label{font:400 11.5px var(--sans);color:var(--muted);white-space:nowrap}.pill{height:26px;display:flex;border-radius:30px;overflow:hidden;box-shadow:0 0 18px rgba(255,90,31,.35);font:500 12.5px var(--mono);font-variant-numeric:tabular-nums}.saved{background:var(--hot);color:#fff;min-width:8.2ch;text-align:right;padding:0 11px 0 13px;display:flex;align-items:center;justify-content:flex-end}.percent{background:var(--hot-soft);color:#d9430f;padding:0 12px 0 10px;display:flex;align-items:center;font:500 11px var(--mono)}
-    .footnote{position:absolute;left:20px;bottom:16px;font:400 10px var(--mono);color:#9ba0a6;z-index:5}.footnote b{color:#666c73;font-weight:500}
-    @media(max-width:767px){:root{--cw:84vw;--ch:54vw;--gap:7vw;--top:54svh}.topbar{padding:0 16px;height:54px}.links,.actions .signin,.actions .trial{display:none}.actions{gap:0}.actions .demo{height:30px;padding:0 13px;font-size:12px}.hero-copy{left:20px;right:20px;top:76px;grid-template-columns:1fr;gap:14px}.hero-copy h1{font-size:34px}.hero-side p{font-size:14px;max-width:none;margin:0 0 14px}.hero-button{height:38px}.codes{mask-image:linear-gradient(90deg,transparent 0,#000 30vw);-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 30vw)}.k-menu{gap:2.2cqw;font-size:1.65cqw}.badge{top:calc(var(--top) - 52px);gap:6px}.badge-label{font-size:10px}.pill{height:23px;font-size:10.5px}.percent{font-size:9px}.footnote{font-size:8px;bottom:8px;left:10px}}
-    @media(max-width:767px) and (max-height:700px){:root{--top:58svh}}
-    @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important}}
-  </style>
-</head>
-<body>
-  <main class="stage" aria-label="Distill AI readability comparison demo">
-    <nav class="topbar" aria-label="Main navigation">
-      <a class="brand" href="#" aria-label="Distill home"><svg viewBox="0 0 19 23" aria-hidden="true"><path fill="currentColor" d="M9.5 0C7.1 4.2 1 10.1 1 15.4a8.5 7.6 0 0 0 17 0C18 10.1 11.9 4.2 9.5 0Z"/><path d="M5.2 15.5c.3 2.2 1.8 3.6 3.9 4.1" fill="none" stroke="var(--bg)" stroke-width="1.7" stroke-linecap="round"/></svg>Distill</a>
-      <div class="links"><a href="#product">Product <svg class="chev" viewBox="0 0 8 5"><path d="m1 1 3 3 3-3" fill="none" stroke="currentColor"/></svg></a><a href="#use-cases">Use cases <svg class="chev" viewBox="0 0 8 5"><path d="m1 1 3 3 3-3" fill="none" stroke="currentColor"/></svg></a><a href="#resources">Resources <svg class="chev" viewBox="0 0 8 5"><path d="m1 1 3 3 3-3" fill="none" stroke="currentColor"/></svg></a><a href="#pricing">Pricing</a></div>
-      <div class="actions"><a class="signin" href="#signin">Sign in</a><a class="trial" href="#trial">Start a free trial</a><a class="demo" href="#demo">Book a demo</a></div>
-    </nav>
-    <section class="hero-copy" id="product"><div><div class="eyebrow">AI READABILITY</div><h1>Built for people.<br><em>Read by machines.</em></h1></div><div class="hero-side"><p>Distill detects AI agents at the edge and serves them a clean, token‑light version of every page, without changing a pixel of what people see.</p><a class="hero-button" href="#demo">Explore Distill</a></div></section>
-    <div class="belt" aria-label="Drag to compare full web pages with their distilled HTML source">
-      <div class="codes" id="codes"></div><div class="cards" id="cards"></div><canvas class="fx" aria-hidden="true"></canvas>
-    </div>
-    <div class="scan" aria-hidden="true"><b></b><i></i></div>
-    <div class="badge" aria-live="polite"><div class="badge-label">Token reduction</div><div class="pill"><span class="saved">−48,193</span><span class="percent">91% less</span></div></div>
-    <div class="footnote"><b>CONCEPT DEMO</b> · Fictional Kessler materials pages · drag the belt to scrub</div>
-  </main>
-  <script>
-  (()=>{
-    const images={dunes:'https://d2ol7oe51mr4n9.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/0e201fcd-ffc0-46a0-bd06-faa07bf0e84b.webp',foundry:'https://d2ol7oe51mr4n9.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/e80ba08d-d7b6-4b27-b0cd-8d0ad09c788c.webp',mineral:'https://d2ol7oe51mr4n9.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/2bebad68-8177-446a-9550-d64074166364.webp',mesa:'https://d2ol7oe51mr4n9.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/62b0d7c1-3eb7-44bd-9b19-57b975fb250f.webp',fire:'https://d2ol7oe51mr4n9.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/156ff74d-ee37-4443-8f3a-11ae2095ed4c.webp',saltflat:'https://d2ol7oe51mr4n9.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/7b6ad638-89ec-4dec-be74-d36fbff3ea53.webp'};
-    const data=[
-      {id:'home',title:'Kessler — Advanced materials',original:70411,distilled:6140,url:'kessler.co/',cls:'card-home',bg:images.dunes,menu:['PRODUCTS','IMPACT','ABOUT'],visual:`<div class="home-bottom"><div class="stats"><div class="stat"><strong>200x</strong><small>stronger</small></div><div class="stat"><strong>87%</strong><small>lower emissions</small></div></div><div class="home-blurb">Advanced materials for a stronger tomorrow.</div></div>`,html:`<h1>Kessler — Advanced materials</h1>\n<p>Advanced materials for a stronger\n  tomorrow. Ceramic-matrix alloys made\n  with desert sand and solar heat.</p>\n<h2>At a glance</h2>\n<ul>\n  <li>Strength: 200x steel by weight</li>\n  <li>Emissions: 87% lower</li>\n  <li>Plants: Nevada, Atacama, Oman</li>\n  <li>Founded: 2019</li>\n</ul>\n<h2>Products</h2>\n<ul>\n  <li>K-Alloy 7 — structural</li>\n  <li>Basalt fibre — tensile</li>\n  <li>Ceramic matrix — thermal</li>\n</ul>\n<a href="/demo">Book a demo</a>`},
-      {id:'price',title:'Kessler — Pricing',original:41208,distilled:4960,url:'kessler.co/pricing',cls:'card-price',menu:['PRODUCTS','PRICING','CONTACT'],active:'PRICING',visual:`<div class="price-main"><sup>$</sup>2,400</div><div class="price-sub">PER MONTH · INDUSTRIAL</div><div class="plans"><div><span>Pilot</span><b>$299</b></div><div><span>Industrial</span><b>$2,400</b></div><div><span>Foundry</span><b>Custom</b></div></div><div class="pilot">Start a pilot</div>`,html:`<h1>Kessler — Pricing</h1>\n<p>Three plans for every scale of\n  production. Start small, scale to\n  full foundry output.</p>\n<h2>Pilot — $299 / mo</h2>\n<ul>\n  <li>Sample batches: 4 / mo</li>\n  <li>Alloy grades: 2</li>\n  <li>Support: email</li>\n</ul>\n<h2>Industrial — $2,400 / mo</h2>\n<ul>\n  <li>Tonnage: up to 40 t / mo</li>\n  <li>Alloy grades: all</li>\n  <li>Certification: ISO 9001</li>\n  <li>Support: dedicated engineer</li>\n</ul>`},
-      {id:'case',title:'Atlas Rail case study',original:98432,distilled:6300,url:'kessler.co/cases/atlas-rail',cls:'card-case',bg:images.mineral,menu:['PRODUCTS','IMPACT','ABOUT'],visual:`<div class="case-copy"><div class="case-kicker">CASE STUDY · ATLAS RAIL</div><div class="case-title">How Atlas Rail cut track weight by a third in eighteen months</div><div class="case-stats"><div class="case-stat"><b>34%</b>lighter track</div><div class="case-stat"><b>3.4x</b>service life</div><div class="case-stat"><b>0</b>unplanned closures</div></div></div>`,html:`<h1>Case study: Atlas Rail</h1>\n<p>How Atlas Rail cut track weight by\n  a third in eighteen months.</p>\n<h2>The challenge</h2>\n<p>1,200 km of desert line, rails\n  warping above 50 °C every summer.</p>\n<h2>The result</h2>\n<ul>\n  <li>34% lighter track sections</li>\n  <li>3.4x longer service life</li>\n  <li>0 unplanned closures in 2025</li>\n</ul>\n<p>We stopped losing summers.\n  — Head of Infrastructure</p>`},
-      {id:'vision',title:'The Kessler vision',original:55870,distilled:8215,url:'kessler.co/vision',cls:'card-vision',menu:['PRODUCTS','VISION','ABOUT'],active:'VISION',visual:`<div class="vision-tiles"><img src="${images.foundry}" alt="Molten metal in a foundry"><img src="${images.mesa}" alt="Desert mesa at blue hour"><div class="vision-quote">The Kessler vision: <em>materials that outlast the people who made them.</em></div></div><div class="vision-footer"><span>How Kessler pours alloy<br>at the edge of the desert</span><span>Manifesto · 6 min</span></div>`,html:`<article>\n  <h1>The Kessler vision</h1>\n  <p>Materials that outlast the people\n    who made them.</p>\n  <p>We build where the sun is\n    strongest and the sand is free:\n    three plants, one closed loop.</p>\n  <h2>Principles</h2>\n  <ol>\n    <li>Heat from the sun, not gas</li>\n    <li>Sand in, scrap back in</li>\n    <li>Publish every number</li>\n  </ol>\n</article>`},
-      {id:'alloy',title:'K-Alloy 7',original:63904,distilled:5512,url:'kessler.co/products/k-alloy-7',cls:'card-alloy',bg:images.fire,menu:['PRODUCTS','IMPACT','ABOUT'],visual:`<div class="alloy-title">The carbon-negative<em>alloy.</em></div><div class="specs"><div><span>Product</span><b>K-Alloy 7</b></div><div><span>Tensile</span><b>1,940 MPa</b></div><div><span>Datasheet</span><b>PDF ↗</b></div></div>`,html:`<h1>K-Alloy 7</h1>\n<p>The carbon-negative alloy.</p>\n<h2>Specification</h2>\n<ul>\n  <li>Tensile strength: 1,940 MPa</li>\n  <li>Density: 2.9 g/cm³</li>\n  <li>Max service temp: 1,150 °C</li>\n  <li>CO₂: −0.4 kg per kg made</li>\n</ul>\n<h2>Uses</h2>\n<p>Rail, bridges, turbine housings</p>\n<a href="/k-alloy-7.pdf">Datasheet</a>`},
-      {id:'journal',title:'Kessler Journal',original:47316,distilled:7602,url:'kessler.co/journal',cls:'card-journal',menu:['PRODUCTS','JOURNAL','ABOUT'],active:'JOURNAL',visual:`<div class="journal-title">Journal<em>field notes from the flats</em></div><div class="posts"><div class="post"><img src="${images.saltflat}" alt="Salt flats"><small>FIELD NOTES</small><p>Mining nothing but light on the salt flats</p></div><div class="post"><img src="${images.mesa}" alt="Atacama mesa"><small>PLANTS</small><p>Atacama, year one</p></div><div class="post"><img src="${images.dunes}" alt="Golden dunes"><small>PROCESS</small><p>Why we melt sand at noon</p></div></div>`,html:`<h1>Kessler Journal</h1>\n<p>Field notes from the flats.</p>\n<article>\n  <h2>Mining nothing but light</h2>\n  <time>2026-03-14</time>\n</article>\n<article>\n  <h2>Atacama, year one</h2>\n  <time>2026-02-02</time>\n</article>\n<article>\n  <h2>Why we melt sand at noon</h2>\n  <time>2026-01-09</time>\n</article>`}
-    ];
-    const cardsHost=document.querySelector('#cards'),codesHost=document.querySelector('#codes'),belt=document.querySelector('.belt'),canvas=document.querySelector('canvas'),ctx=canvas.getContext('2d'),savedEl=document.querySelector('.saved'),percentEl=document.querySelector('.percent');
-    const logo=`<svg class="mountain" viewBox="0 0 54 42" fill="none" aria-hidden="true"><path d="M3 38 24 5l19 33H3Z" stroke="currentColor" stroke-width="3.2"/><path d="m22 38 16-25 14 25H22Z" stroke="currentColor" stroke-width="3.2"/></svg>`;
-    const fmt=n=>new Intl.NumberFormat('en-US').format(n);
-    data.forEach((d,i)=>{
-      const card=document.createElement('article');card.className=`card ${d.cls}`;card.setAttribute('aria-label',`${d.title} website preview`);if(d.bg)card.style.backgroundImage=`url("${d.bg}")`;
-      const menu=d.menu.map(item=>`<span class="${item===d.active?'active':''}">${item}</span>`).join('');
-      card.innerHTML=`<div class="k-nav"><div class="k-logo">${logo}<span>Kessler</span></div><div class="k-menu">${menu}</div></div>${d.visual}`;cardsHost.append(card);
-      const code=document.createElement('div');code.className='code';code.innerHTML=`<pre class="source"></pre><pre class="meta"></pre>`;code.querySelector('.source').textContent=d.html;code.querySelector('.meta').textContent=`<!-- distilled: ${fmt(d.distilled)} tokens -->\n<!-- original: ${fmt(d.original)} tokens -->\n<!-- ${d.url} -->`;codesHost.append(code);d.el=card;d.code=code;d.saved=d.original-d.distilled;d.percent=Math.round(d.saved/d.original*100);
-    });
-    const reduce=matchMedia('(prefers-reduced-motion: reduce)');let cw=0,ch=0,gap=0,span=0,period=0,off=0,vel=0,hover=0,last=0,drag=false,lastX=0,lastT=0,active=-1,shown=0,sparks=[];const palette=['#FF4A12','#FF5A1F','#FF6B2C','#FF8A3D','#FFB06A','#FFD9B5','#FFF3E6'];
-    const clamp=(v,a,b)=>Math.max(a,Math.min(b,v)),mod=(n,m)=>((n%m)+m)%m;
-    function measure(){const r=data[0].el.getBoundingClientRect(),root=getComputedStyle(document.documentElement);cw=r.width;ch=r.height;gap=parseFloat(root.getPropertyValue('--gap'))*innerWidth/100;span=cw+gap;period=span*data.length;const dpr=Math.min(devicePixelRatio||1,2),br=belt.getBoundingClientRect();canvas.width=Math.round(br.width*dpr);canvas.height=Math.round(br.height*dpr);canvas.style.width=br.width+'px';canvas.style.height=br.height+'px';ctx.setTransform(dpr,0,0,dpr,0,0);if(!last)off=innerWidth/2-.62*cw;}
-    function hash(a,b,c){let h=(Math.imul(a,374761393)+Math.imul(b,668265263)+Math.imul(c,2147483647))|0;h=Math.imul(h^(h>>>13),1274126177)|0;return((h^(h>>>16))>>>0)/4294967296}
-    function position(){const L=innerWidth/2;let current=-1,progress=0;data.forEach((d,i)=>{const x=mod(off+i*span+span,period)-span,cut=clamp(L-x,0,cw),cross=cut>0&&cut<cw;d.x=x;d.cut=cut;d.el.style.transform=`translate3d(${x}px,0,0)`;d.code.style.transform=`translate3d(${x}px,0,0)`;if(cut>0){d.el.style.clipPath=`inset(0 0 0 ${cut}px round 0 1.6vw 1.6vw 0)`;d.el.style.webkitMaskImage=`linear-gradient(90deg,transparent ${cut}px,#000 ${cut+26}px)`;d.code.style.clipPath=`inset(0 ${cw-cut}px 0 0)`;d.code.style.visibility='visible'}else{d.el.style.clipPath='';d.el.style.webkitMaskImage='';d.code.style.clipPath='';d.code.style.visibility='hidden'}if(cross&&current<0){current=i;progress=cut/cw}});if(current!==active){active=current;if(active>=0){percentEl.textContent=`${data[active].percent}% less`;shown=0}else shown=0}if(active>=0){const target=data[active].saved*progress;shown+=(target-shown)*.24;savedEl.textContent='−'+fmt(Math.round(shown))}}
-    function draw(now,dt){const W=innerWidth,H=belt.clientHeight,L=W/2,y=70;ctx.clearRect(0,0,W,H);data.forEach((d,i)=>{if(d.cut<=0||d.x+cw<=L)return;const right=Math.min(150,d.x+cw-L);if(right>0){const g=ctx.createLinearGradient(L,0,L+150,0);g.addColorStop(0,'rgba(255,96,40,.42)');g.addColorStop(1,'rgba(255,96,40,0)');ctx.fillStyle=g;ctx.fillRect(L,y,right,ch)}const R=.3*cw,start=Math.max(0,d.cut-2),end=Math.min(cw,d.cut+R),cols=Math.ceil((end-start)/3),rows=Math.ceil(ch/3);for(let col=0;col<cols;col++){const gx=Math.floor(start/3)+col,sx=d.x+gx*3,dist=sx-L,p=Math.pow(clamp(1-dist/R,0,1),1.7);for(let row=-5;row<rows+5;row++){const gy=row,inside=row>=0&&row<rows,edge=inside?1:clamp(1-Math.abs(row-(row<0?0:rows-1))/5,0,1);if(hash(gx,gy,i)>=p*(inside?.92:.16)*edge)continue;const h2=hash(gy,gx,i+31);if(!reduce.matches&&hash(gx,gy,Math.floor(now/111)+97)<.22)continue;const ci=dist<10?4+Math.floor(h2*3):Math.floor(h2*h2*7);const jx=reduce.matches?0:(hash(gx,gy,i+61)-.5)*1.6,jy=reduce.matches?0:(hash(gy,gx,i+79)-.5)*1.6;ctx.globalAlpha=inside?1:edge;ctx.fillStyle=palette[Math.min(ci,6)];const size=1.1+h2*1.7;ctx.fillRect(sx-L+jx,y+gy*3-3+jy,size,size)}}});ctx.globalAlpha=1;
-      if(!reduce.matches){for(let n=0;n<3;n++)if(Math.random()<.7){const d=data.find(x=>x.cut>0&&x.x+cw>L);if(!d)break;sparks.push({x:L+Math.random()*30,y:Math.random()*ch-10,vx:(Math.random()*70-30)+vel*.6,vy:(Math.random()*50-25),size:.8+Math.random()*1.8,life:.3+Math.random()*.8,max:0,color:palette[Math.floor(Math.random()*palette.length)]});sparks[sparks.length-1].max=sparks[sparks.length-1].life}for(const s of sparks){s.x+=s.vx*dt;s.y+=s.vy*dt;s.life-=dt;ctx.globalAlpha=Math.min(1,s.life*2.2);ctx.fillStyle=s.color;ctx.fillRect(s.x-L,y+s.y,s.size,s.size)}sparks=sparks.filter(s=>s.life>0)}ctx.globalAlpha=1;
-    }
-    function frame(t){const dt=Math.min((t-last)/1000||0,.05);last=t;const auto=reduce.matches?0:-.075*innerWidth;hover+=( (belt.matches(':hover')?1:0)-hover)*Math.min(1,4*dt);if(!drag){const target=auto*(1-.65*hover);vel+=(target-vel)*(1-Math.exp(-2.2*dt));off+=vel*dt}else off+=vel*dt;position();draw(t,dt);requestAnimationFrame(frame)}
-    belt.addEventListener('pointerdown',e=>{drag=true;lastX=e.clientX;lastT=performance.now();vel=0;belt.classList.add('dragging');belt.setPointerCapture(e.pointerId)});belt.addEventListener('pointermove',e=>{if(!drag)return;const now=performance.now(),dx=e.clientX-lastX,ms=Math.max(8,now-lastT);off+=dx;vel=(dx/ms*1000)*.8+vel*.2;lastX=e.clientX;lastT=now});function release(){drag=false;belt.classList.remove('dragging')}belt.addEventListener('pointerup',release);belt.addEventListener('pointercancel',release);belt.addEventListener('wheel',e=>{if(Math.abs(e.deltaX)>Math.abs(e.deltaY)){vel-=e.deltaX*6;e.preventDefault()}},{passive:false});addEventListener('resize',measure);measure();requestAnimationFrame(frame);
-  })();
-  </script>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#eef0f2" />
+    <title>Distill — Built for people. Read by machines.</title>
+    <meta
+      name="description"
+      content="An interactive concept demo showing how Distill turns rich web pages into token-light HTML for AI agents."
+    />
+    <style>
+      @font-face {
+        font-family: Inter;
+        src: url('assets/fonts/inter-latin.woff2') format('woff2');
+        font-style: normal;
+        font-weight: 300 600;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: Newsreader;
+        src: url('assets/fonts/newsreader-latin.woff2') format('woff2');
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: Newsreader;
+        src: url('assets/fonts/newsreader-italic-latin.woff2') format('woff2');
+        font-style: italic;
+        font-weight: 400;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: 'IBM Plex Mono';
+        src: url('assets/fonts/ibm-plex-mono-400-latin.woff2') format('woff2');
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: 'IBM Plex Mono';
+        src: url('assets/fonts/ibm-plex-mono-500-latin.woff2') format('woff2');
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+      }
+      :root {
+        --bg: #eef0f2;
+        --ink: #0f1115;
+        --body: #2a2e35;
+        --muted: #8b9098;
+        --code: #7a7f88;
+        --comment: #b3b8bf;
+        --hot: #ff5a1f;
+        --hot-soft: #ffe1d3;
+        --sans: Inter, system-ui, sans-serif;
+        --serif: Newsreader, Georgia, serif;
+        --mono: 'IBM Plex Mono', ui-monospace, monospace;
+        --cw: 46vw;
+        --ch: 52vh;
+        --gap: 4.75vw;
+        --top: 40.2vh;
+        color-scheme: light;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+      }
+      body {
+        overflow: hidden;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: var(--sans);
+        -webkit-font-smoothing: antialiased;
+      }
+      button,
+      a {
+        -webkit-tap-highlight-color: transparent;
+      }
+      .stage {
+        position: absolute;
+        inset: 0;
+        height: 100svh;
+        overflow: hidden;
+        background: var(--bg);
+      }
+      .topbar {
+        height: 56px;
+        padding: 0 20px;
+        display: flex;
+        align-items: center;
+        gap: 56px;
+        position: relative;
+        z-index: 5;
+        color: var(--body);
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--ink);
+        font-weight: 600;
+        font-size: 23px;
+        letter-spacing: -0.035em;
+        text-decoration: none;
+      }
+      .brand svg {
+        width: 19px;
+        height: 23px;
+      }
+      .links,
+      .actions {
+        display: flex;
+        align-items: center;
+      }
+      .links {
+        gap: 30px;
+      }
+      .links a,
+      .actions a {
+        font-size: 13px;
+        font-weight: 500;
+        color: inherit;
+        text-decoration: none;
+      }
+      .links a {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .chev {
+        width: 8px;
+        height: 5px;
+        opacity: 0.7;
+      }
+      .actions {
+        margin-left: auto;
+        gap: 20px;
+        font-size: 12.5px;
+      }
+      .actions .trial,
+      .actions .demo {
+        height: 32px;
+        padding: 0 17px;
+        display: inline-flex;
+        align-items: center;
+        border-radius: 30px;
+      }
+      .actions .trial {
+        border: 1px solid #c4c9cf;
+        background: rgba(255, 255, 255, 0.35);
+      }
+      .actions .demo,
+      .hero-button {
+        background: var(--hot);
+        color: white;
+      }
+      .hero-copy {
+        position: absolute;
+        left: 8.9vw;
+        right: 8.9vw;
+        top: 92px;
+        display: grid;
+        grid-template-columns: 1fr 34vw;
+        gap: 4vw;
+        z-index: 2;
+      }
+      .eyebrow {
+        font: 500 11.5px var(--mono);
+        letter-spacing: 0.06em;
+        color: var(--body);
+      }
+      h1 {
+        font: 400 clamp(30px, 3vw, 58px) / 1.05 var(--serif);
+        letter-spacing: -0.025em;
+        margin: 14px 0 0;
+        max-width: 13em;
+      }
+      h1 em {
+        font-style: italic;
+      }
+      .hero-side p {
+        font: 400 clamp(14px, 1.05vw, 19px) / 1.55 var(--sans);
+        color: var(--body);
+        max-width: 34vw;
+        margin: 2px 0 20px;
+      }
+      .hero-button {
+        border: 0;
+        border-radius: 30px;
+        padding: 0 22px;
+        height: 40px;
+        font: 500 13px var(--sans);
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+      }
+      .hero-button:hover {
+        transform: translateY(-2px);
+      }
+      .belt {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: calc(var(--top) - 70px);
+        height: calc(var(--ch) + 140px);
+        cursor: grab;
+        touch-action: pan-y;
+        user-select: none;
+      }
+      .belt.dragging {
+        cursor: grabbing;
+      }
+      .codes,
+      .cards,
+      .fx {
+        position: absolute;
+        inset: 0;
+      }
+      .codes {
+        mask-image: linear-gradient(90deg, transparent 0, #000 24vw);
+        -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 24vw);
+        z-index: 1;
+      }
+      .cards {
+        z-index: 2;
+      }
+      .fx {
+        z-index: 3;
+        pointer-events: none;
+        width: 100%;
+        height: 100%;
+      }
+      .card,
+      .code {
+        position: absolute;
+        left: 0;
+        top: 70px;
+        width: var(--cw);
+        height: var(--ch);
+        transform: translate3d(0, 0, 0);
+      }
+      .card {
+        overflow: hidden;
+        border-radius: 1.6vw;
+        color: white;
+        background: #1b1311;
+        container-type: inline-size;
+        will-change: transform, clip-path;
+        isolation: isolate;
+      }
+      .code {
+        overflow: hidden;
+        white-space: pre;
+        color: var(--code);
+        container-type: inline-size;
+        pointer-events: none;
+      }
+      .code pre {
+        position: absolute;
+        inset: 0 auto auto 0;
+        margin: 0;
+        width: 49%;
+        font: 400 1.56cqw/1.39 var(--mono);
+        white-space: pre-wrap;
+      }
+      .code .meta {
+        left: 51%;
+        width: 49%;
+        color: var(--comment);
+      }
+      .k-nav {
+        position: absolute;
+        top: 4cqw;
+        left: 4.4cqw;
+        right: 4.4cqw;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 2;
+      }
+      .k-logo {
+        display: flex;
+        align-items: center;
+        gap: 1.3cqw;
+        font: 500 4.6cqw var(--sans);
+        letter-spacing: -0.03em;
+      }
+      .mountain {
+        width: 5.4cqw;
+        height: 4.2cqw;
+        overflow: visible;
+      }
+      .k-menu {
+        display: flex;
+        align-items: center;
+        gap: 3.4cqw;
+        font: 500 1.32cqw var(--sans);
+        letter-spacing: 0.14em;
+        opacity: 0.86;
+      }
+      .k-menu span {
+        white-space: nowrap;
+      }
+      .k-menu .active {
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        border-radius: 4cqw;
+        padding: 0.7cqw 1.6cqw;
+        margin: -0.7cqw -1.6cqw;
+      }
+      .card-home {
+        background-size: cover;
+        background-position: center;
+      }
+      .card-home:before,
+      .card-case:before,
+      .card-alloy:before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          180deg,
+          rgba(20, 10, 4, 0.25),
+          transparent 30%,
+          rgba(20, 10, 4, 0.55)
+        );
+        z-index: 0;
+      }
+      .home-bottom {
+        position: absolute;
+        left: 4.4cqw;
+        right: 4.4cqw;
+        bottom: 4.8cqw;
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+      }
+      .stats {
+        display: flex;
+        gap: 4cqw;
+      }
+      .stat {
+        display: flex;
+        flex-direction: column;
+      }
+      .stat + .stat {
+        border-left: 1px solid rgba(255, 255, 255, 0.35);
+        padding-left: 4cqw;
+      }
+      .stat strong {
+        font: 300 9cqw/0.9 var(--sans);
+        letter-spacing: -0.04em;
+      }
+      .stat small {
+        font: 400 1.9cqw var(--sans);
+      }
+      .home-blurb {
+        width: 24cqw;
+        font-size: 2.2cqw;
+        line-height: 1.28;
+      }
+      .card-price {
+        color: #2a1406;
+        background: radial-gradient(
+          120% 90% at 20% 110%,
+          #ff6a1f 0,
+          #ff9a4a 35%,
+          #f7c79a 62%,
+          #efd9c4 100%
+        );
+      }
+      .price-main {
+        position: absolute;
+        left: 6cqw;
+        top: 38%;
+        font: 300 13cqw/0.95 var(--sans);
+        letter-spacing: -0.05em;
+      }
+      .price-main sup {
+        font-size: 0.4em;
+        vertical-align: top;
+        line-height: 1.7;
+      }
+      .price-sub {
+        position: absolute;
+        left: 6.5cqw;
+        top: 62%;
+        font: 400 1.6cqw var(--mono);
+        opacity: 0.75;
+      }
+      .plans {
+        position: absolute;
+        right: 5cqw;
+        top: 36%;
+        width: 36cqw;
+        font-size: 2cqw;
+      }
+      .plans div {
+        padding: 1.7cqw 0;
+        border-top: 1px solid rgba(42, 20, 6, 0.25);
+        display: flex;
+        justify-content: space-between;
+      }
+      .pilot {
+        position: absolute;
+        left: 5cqw;
+        bottom: 5cqw;
+        border-radius: 5cqw;
+        background: #2a1406;
+        color: #f7e6d6;
+        padding: 1.4cqw 3cqw;
+        font-size: 1.8cqw;
+      }
+      .card-case {
+        background-size: cover;
+        background-position: center;
+      }
+      .card-case:before {
+        background: rgba(25, 14, 8, 0.45);
+        backdrop-filter: blur(1.4cqw);
+      }
+      .case-copy {
+        position: absolute;
+        left: 7cqw;
+        right: 7cqw;
+        top: 17%;
+      }
+      .case-kicker {
+        font: 400 1.4cqw var(--mono);
+        letter-spacing: 0.1em;
+      }
+      .case-title {
+        font: 400 4.6cqw/1.04 var(--serif);
+        max-width: 56cqw;
+        margin: 3cqw 0 0;
+      }
+      .case-stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 3cqw;
+        margin-top: 7cqw;
+      }
+      .case-stat {
+        border-top: 1px solid rgba(255, 255, 255, 0.45);
+        padding-top: 1.5cqw;
+        font-size: 1.7cqw;
+      }
+      .case-stat b {
+        display: block;
+        font: 300 6cqw/0.95 var(--sans);
+        margin-bottom: 1cqw;
+      }
+      .card-vision {
+        background: #1b1311;
+      }
+      .vision-tiles {
+        position: absolute;
+        top: 21%;
+        left: 5cqw;
+        right: 5cqw;
+        height: 46%;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1.2fr;
+        gap: 2cqw;
+      }
+      .vision-tiles img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 1.4cqw;
+      }
+      .vision-quote {
+        align-self: center;
+        font: 400 3.4cqw/1.08 var(--serif);
+      }
+      .vision-quote em {
+        opacity: 0.75;
+      }
+      .vision-footer {
+        position: absolute;
+        bottom: 5cqw;
+        left: 5cqw;
+        right: 5cqw;
+        display: flex;
+        justify-content: space-between;
+        font-size: 1.6cqw;
+        opacity: 0.7;
+      }
+      .card-alloy {
+        background-size: cover;
+        background-position: center;
+      }
+      .card-alloy:before {
+        background: linear-gradient(90deg, rgba(20, 12, 8, 0.5), rgba(20, 12, 8, 0.12));
+      }
+      .alloy-title {
+        position: absolute;
+        left: 6cqw;
+        bottom: 7cqw;
+        font: 400 7.4cqw/0.98 var(--serif);
+      }
+      .alloy-title em {
+        display: block;
+      }
+      .specs {
+        position: absolute;
+        right: 5cqw;
+        bottom: 8cqw;
+        width: 30cqw;
+        font-size: 1.8cqw;
+      }
+      .specs div {
+        display: flex;
+        justify-content: space-between;
+        border-top: 1px solid rgba(255, 255, 255, 0.5);
+        padding: 1.5cqw 0;
+      }
+      .card-journal {
+        background: #e9ecf1;
+        color: #121a2a;
+      }
+      .card-journal .k-menu {
+        color: #121a2a;
+      }
+      .journal-title {
+        position: absolute;
+        top: 23%;
+        left: 5cqw;
+        font: 400 5.6cqw/0.98 var(--serif);
+      }
+      .journal-title em {
+        display: block;
+        color: #46618e;
+      }
+      .posts {
+        position: absolute;
+        left: 5cqw;
+        right: 5cqw;
+        bottom: 5cqw;
+        display: grid;
+        grid-template-columns: 1.25fr 1fr 1fr;
+        gap: 2.5cqw;
+      }
+      .post img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 4/3;
+        object-fit: cover;
+        border-radius: 1.2cqw;
+      }
+      .post small {
+        display: block;
+        margin-top: 1.4cqw;
+        font: 400 1.25cqw var(--mono);
+        color: #6a7891;
+      }
+      .post p {
+        margin: 0.6cqw 0 0;
+        font-size: 1.8cqw;
+        line-height: 1.15;
+      }
+      .card-journal .active {
+        border-color: rgba(18, 26, 42, 0.55);
+      }
+      .scan {
+        position: absolute;
+        left: 50%;
+        top: calc(var(--top) - 14px);
+        height: calc(var(--ch) + 40px);
+        width: 0;
+        z-index: 4;
+        pointer-events: none;
+      }
+      .scan i {
+        position: absolute;
+        left: -2px;
+        top: 0;
+        width: 4px;
+        height: 100%;
+        border-radius: 4px;
+        background: linear-gradient(180deg, #ff7a3c 0, #ff5a1f 12%, #ff5a1f 88%, #ff7a3c 100%);
+        box-shadow:
+          0 0 10px 2px rgba(255, 90, 31, 0.85),
+          0 0 34px 10px rgba(255, 90, 31, 0.38);
+      }
+      .scan b {
+        position: absolute;
+        left: 0;
+        top: 4%;
+        width: 42px;
+        height: 92%;
+        background: linear-gradient(90deg, rgba(255, 110, 50, 0.55), transparent);
+        filter: blur(6px);
+      }
+      .badge {
+        position: absolute;
+        left: 50%;
+        top: calc(var(--top) - 60px);
+        transform: translateX(-50%);
+        z-index: 5;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: 9px;
+        pointer-events: none;
+      }
+      .badge-label {
+        font: 400 11.5px var(--sans);
+        color: var(--muted);
+        white-space: nowrap;
+      }
+      .pill {
+        height: 26px;
+        display: flex;
+        border-radius: 30px;
+        overflow: hidden;
+        box-shadow: 0 0 18px rgba(255, 90, 31, 0.35);
+        font: 500 12.5px var(--mono);
+        font-variant-numeric: tabular-nums;
+      }
+      .saved {
+        background: var(--hot);
+        color: #fff;
+        min-width: 8.2ch;
+        text-align: right;
+        padding: 0 11px 0 13px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+      }
+      .percent {
+        background: var(--hot-soft);
+        color: #d9430f;
+        padding: 0 12px 0 10px;
+        display: flex;
+        align-items: center;
+        font: 500 11px var(--mono);
+      }
+      .footnote {
+        position: absolute;
+        left: 20px;
+        bottom: 16px;
+        font: 400 10px var(--mono);
+        color: #9ba0a6;
+        z-index: 5;
+      }
+      .footnote b {
+        color: #666c73;
+        font-weight: 500;
+      }
+      @media (max-width: 767px) {
+        :root {
+          --cw: 84vw;
+          --ch: 54vw;
+          --gap: 7vw;
+          --top: 54svh;
+        }
+        .topbar {
+          padding: 0 16px;
+          height: 54px;
+        }
+        .links,
+        .actions .signin,
+        .actions .trial {
+          display: none;
+        }
+        .actions {
+          gap: 0;
+        }
+        .actions .demo {
+          height: 30px;
+          padding: 0 13px;
+          font-size: 12px;
+        }
+        .hero-copy {
+          left: 20px;
+          right: 20px;
+          top: 76px;
+          grid-template-columns: 1fr;
+          gap: 14px;
+        }
+        .hero-copy h1 {
+          font-size: 34px;
+        }
+        .hero-side p {
+          font-size: 14px;
+          max-width: none;
+          margin: 0 0 14px;
+        }
+        .hero-button {
+          height: 38px;
+        }
+        .codes {
+          mask-image: linear-gradient(90deg, transparent 0, #000 30vw);
+          -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 30vw);
+        }
+        .k-menu {
+          gap: 2.2cqw;
+          font-size: 1.65cqw;
+        }
+        .badge {
+          top: calc(var(--top) - 52px);
+          gap: 6px;
+        }
+        .badge-label {
+          font-size: 10px;
+        }
+        .pill {
+          height: 23px;
+          font-size: 10.5px;
+        }
+        .percent {
+          font-size: 9px;
+        }
+        .footnote {
+          font-size: 8px;
+          bottom: 8px;
+          left: 10px;
+        }
+      }
+      @media (max-width: 767px) and (max-height: 700px) {
+        :root {
+          --top: 58svh;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          scroll-behavior: auto !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="stage" aria-label="Distill AI readability comparison demo">
+      <nav class="topbar" aria-label="Main navigation">
+        <a class="brand" href="#" aria-label="Distill home"
+          ><svg viewBox="0 0 19 23" aria-hidden="true">
+            <path
+              fill="currentColor"
+              d="M9.5 0C7.1 4.2 1 10.1 1 15.4a8.5 7.6 0 0 0 17 0C18 10.1 11.9 4.2 9.5 0Z"
+            />
+            <path
+              d="M5.2 15.5c.3 2.2 1.8 3.6 3.9 4.1"
+              fill="none"
+              stroke="var(--bg)"
+              stroke-width="1.7"
+              stroke-linecap="round"
+            /></svg
+          >Distill</a
+        >
+        <div class="links">
+          <a href="#product"
+            >Product
+            <svg class="chev" viewBox="0 0 8 5">
+              <path d="m1 1 3 3 3-3" fill="none" stroke="currentColor" /></svg></a
+          ><a href="#use-cases"
+            >Use cases
+            <svg class="chev" viewBox="0 0 8 5">
+              <path d="m1 1 3 3 3-3" fill="none" stroke="currentColor" /></svg></a
+          ><a href="#resources"
+            >Resources
+            <svg class="chev" viewBox="0 0 8 5">
+              <path d="m1 1 3 3 3-3" fill="none" stroke="currentColor" /></svg></a
+          ><a href="#pricing">Pricing</a>
+        </div>
+        <div class="actions">
+          <a class="signin" href="#signin">Sign in</a
+          ><a class="trial" href="#trial">Start a free trial</a
+          ><a class="demo" href="#demo">Book a demo</a>
+        </div>
+      </nav>
+      <section class="hero-copy" id="product">
+        <div>
+          <div class="eyebrow">AI READABILITY</div>
+          <h1>Built for people.<br /><em>Read by machines.</em></h1>
+        </div>
+        <div class="hero-side">
+          <p>
+            Distill detects AI agents at the edge and serves them a clean, token‑light version of
+            every page, without changing a pixel of what people see.
+          </p>
+          <a class="hero-button" href="#demo">Explore Distill</a>
+        </div>
+      </section>
+      <div
+        class="belt"
+        aria-label="Drag to compare full web pages with their distilled HTML source"
+      >
+        <div class="codes" id="codes"></div>
+        <div class="cards" id="cards"></div>
+        <canvas class="fx" aria-hidden="true"></canvas>
+      </div>
+      <div class="scan" aria-hidden="true"><b></b><i></i></div>
+      <div class="badge" aria-live="polite">
+        <div class="badge-label">Token reduction</div>
+        <div class="pill">
+          <span class="saved">−48,193</span><span class="percent">91% less</span>
+        </div>
+      </div>
+      <div class="footnote">
+        <b>CONCEPT DEMO</b> · Fictional Kessler materials pages · drag the belt to scrub
+      </div>
+    </main>
+    <script>
+      (() => {
+        const images = {
+          dunes:
+            'https://d2ol7oe51mr4n9.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/0e201fcd-ffc0-46a0-bd06-faa07bf0e84b.webp',
+          foundry:
+            'https://d2ol7oe51mr4n9.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/e80ba08d-d7b6-4b27-b0cd-8d0ad09c788c.webp',
+          mineral:
+            'https://d2ol7oe51mr4n9.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/2bebad68-8177-446a-9550-d64074166364.webp',
+          mesa: 'https://d2ol7oe51mr4n9.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/62b0d7c1-3eb7-44bd-9b19-57b975fb250f.webp',
+          fire: 'https://d2ol7oe51mr4n9.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/156ff74d-ee37-4443-8f3a-11ae2095ed4c.webp',
+          saltflat:
+            'https://d2ol7oe51mr4n9.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/7b6ad638-89ec-4dec-be74-d36fbff3ea53.webp',
+        };
+        const data = [
+          {
+            id: 'home',
+            title: 'Kessler — Advanced materials',
+            original: 70411,
+            distilled: 6140,
+            url: 'kessler.co/',
+            cls: 'card-home',
+            bg: images.dunes,
+            menu: ['PRODUCTS', 'IMPACT', 'ABOUT'],
+            visual: `
+              <div class="home-bottom">
+                <div class="stats">
+                  <div class="stat"><strong>200x</strong><small>stronger</small></div>
+                  <div class="stat"><strong>87%</strong><small>lower emissions</small></div>
+                </div>
+                <div class="home-blurb">Advanced materials for a stronger tomorrow.</div>
+              </div>
+            `.trim(),
+            html: [
+              '<h1>Kessler — Advanced materials</h1>',
+              '<p>Advanced materials for a stronger',
+              '  tomorrow. Ceramic-matrix alloys made',
+              '  with desert sand and solar heat.</p>',
+              '<h2>At a glance</h2>',
+              '<ul>',
+              '  <li>Strength: 200x steel by weight</li>',
+              '  <li>Emissions: 87% lower</li>',
+              '  <li>Plants: Nevada, Atacama, Oman</li>',
+              '  <li>Founded: 2019</li>',
+              '</ul>',
+              '<h2>Products</h2>',
+              '<ul>',
+              '  <li>K-Alloy 7 — structural</li>',
+              '  <li>Basalt fibre — tensile</li>',
+              '  <li>Ceramic matrix — thermal</li>',
+              '</ul>',
+              '<a href="/demo">Book a demo</a>',
+            ].join('\n'),
+          },
+          {
+            id: 'price',
+            title: 'Kessler — Pricing',
+            original: 41208,
+            distilled: 4960,
+            url: 'kessler.co/pricing',
+            cls: 'card-price',
+            menu: ['PRODUCTS', 'PRICING', 'CONTACT'],
+            active: 'PRICING',
+            visual: `
+              <div class="price-main"><sup>$</sup>2,400</div>
+              <div class="price-sub">PER MONTH · INDUSTRIAL</div>
+              <div class="plans">
+                <div><span>Pilot</span><b>$299</b></div>
+                <div><span>Industrial</span><b>$2,400</b></div>
+                <div><span>Foundry</span><b>Custom</b></div>
+              </div>
+              <div class="pilot">Start a pilot</div>
+            `.trim(),
+            html: [
+              '<h1>Kessler — Pricing</h1>',
+              '<p>Three plans for every scale of',
+              '  production. Start small, scale to',
+              '  full foundry output.</p>',
+              '<h2>Pilot — $299 / mo</h2>',
+              '<ul>',
+              '  <li>Sample batches: 4 / mo</li>',
+              '  <li>Alloy grades: 2</li>',
+              '  <li>Support: email</li>',
+              '</ul>',
+              '<h2>Industrial — $2,400 / mo</h2>',
+              '<ul>',
+              '  <li>Tonnage: up to 40 t / mo</li>',
+              '  <li>Alloy grades: all</li>',
+              '  <li>Certification: ISO 9001</li>',
+              '  <li>Support: dedicated engineer</li>',
+              '</ul>',
+            ].join('\n'),
+          },
+          {
+            id: 'case',
+            title: 'Atlas Rail case study',
+            original: 98432,
+            distilled: 6300,
+            url: 'kessler.co/cases/atlas-rail',
+            cls: 'card-case',
+            bg: images.mineral,
+            menu: ['PRODUCTS', 'IMPACT', 'ABOUT'],
+            visual: `
+              <div class="case-copy">
+                <div class="case-kicker">CASE STUDY · ATLAS RAIL</div>
+                <div class="case-title">
+                  How Atlas Rail cut track weight by a third in eighteen months
+                </div>
+                <div class="case-stats">
+                  <div class="case-stat"><b>34%</b>lighter track</div>
+                  <div class="case-stat"><b>3.4x</b>service life</div>
+                  <div class="case-stat"><b>0</b>unplanned closures</div>
+                </div>
+              </div>
+            `.trim(),
+            html: [
+              '<h1>Case study: Atlas Rail</h1>',
+              '<p>How Atlas Rail cut track weight by',
+              '  a third in eighteen months.</p>',
+              '<h2>The challenge</h2>',
+              '<p>1,200 km of desert line, rails',
+              '  warping above 50 °C every summer.</p>',
+              '<h2>The result</h2>',
+              '<ul>',
+              '  <li>34% lighter track sections</li>',
+              '  <li>3.4x longer service life</li>',
+              '  <li>0 unplanned closures in 2025</li>',
+              '</ul>',
+              '<p>We stopped losing summers.',
+              '  — Head of Infrastructure</p>',
+            ].join('\n'),
+          },
+          {
+            id: 'vision',
+            title: 'The Kessler vision',
+            original: 55870,
+            distilled: 8215,
+            url: 'kessler.co/vision',
+            cls: 'card-vision',
+            menu: ['PRODUCTS', 'VISION', 'ABOUT'],
+            active: 'VISION',
+            visual: `
+              <div class="vision-tiles">
+                <img src="${images.foundry}" alt="Molten metal in a foundry">
+                <img src="${images.mesa}" alt="Desert mesa at blue hour">
+                <div class="vision-quote">
+                  The Kessler vision:
+                  <em>materials that outlast the people who made them.</em>
+                </div>
+              </div>
+              <div class="vision-footer">
+                <span>How Kessler pours alloy<br>at the edge of the desert</span>
+                <span>Manifesto · 6 min</span>
+              </div>
+            `.trim(),
+            html: [
+              '<article>',
+              '  <h1>The Kessler vision</h1>',
+              '  <p>Materials that outlast the people',
+              '    who made them.</p>',
+              '  <p>We build where the sun is',
+              '    strongest and the sand is free:',
+              '    three plants, one closed loop.</p>',
+              '  <h2>Principles</h2>',
+              '  <ol>',
+              '    <li>Heat from the sun, not gas</li>',
+              '    <li>Sand in, scrap back in</li>',
+              '    <li>Publish every number</li>',
+              '  </ol>',
+              '</article>',
+            ].join('\n'),
+          },
+          {
+            id: 'alloy',
+            title: 'K-Alloy 7',
+            original: 63904,
+            distilled: 5512,
+            url: 'kessler.co/products/k-alloy-7',
+            cls: 'card-alloy',
+            bg: images.fire,
+            menu: ['PRODUCTS', 'IMPACT', 'ABOUT'],
+            visual: `
+              <div class="alloy-title">The carbon-negative<em>alloy.</em></div>
+              <div class="specs">
+                <div><span>Product</span><b>K-Alloy 7</b></div>
+                <div><span>Tensile</span><b>1,940 MPa</b></div>
+                <div><span>Datasheet</span><b>PDF ↗</b></div>
+              </div>
+            `.trim(),
+            html: [
+              '<h1>K-Alloy 7</h1>',
+              '<p>The carbon-negative alloy.</p>',
+              '<h2>Specification</h2>',
+              '<ul>',
+              '  <li>Tensile strength: 1,940 MPa</li>',
+              '  <li>Density: 2.9 g/cm³</li>',
+              '  <li>Max service temp: 1,150 °C</li>',
+              '  <li>CO₂: −0.4 kg per kg made</li>',
+              '</ul>',
+              '<h2>Uses</h2>',
+              '<p>Rail, bridges, turbine housings</p>',
+              '<a href="/k-alloy-7.pdf">Datasheet</a>',
+            ].join('\n'),
+          },
+          {
+            id: 'journal',
+            title: 'Kessler Journal',
+            original: 47316,
+            distilled: 7602,
+            url: 'kessler.co/journal',
+            cls: 'card-journal',
+            menu: ['PRODUCTS', 'JOURNAL', 'ABOUT'],
+            active: 'JOURNAL',
+            visual: `
+              <div class="journal-title">
+                Journal<em>field notes from the flats</em>
+              </div>
+              <div class="posts">
+                <div class="post">
+                  <img src="${images.saltflat}" alt="Salt flats">
+                  <small>FIELD NOTES</small>
+                  <p>Mining nothing but light on the salt flats</p>
+                </div>
+                <div class="post">
+                  <img src="${images.mesa}" alt="Atacama mesa">
+                  <small>PLANTS</small>
+                  <p>Atacama, year one</p>
+                </div>
+                <div class="post">
+                  <img src="${images.dunes}" alt="Golden dunes">
+                  <small>PROCESS</small>
+                  <p>Why we melt sand at noon</p>
+                </div>
+              </div>
+            `.trim(),
+            html: [
+              '<h1>Kessler Journal</h1>',
+              '<p>Field notes from the flats.</p>',
+              '<article>',
+              '  <h2>Mining nothing but light</h2>',
+              '  <time>2026-03-14</time>',
+              '</article>',
+              '<article>',
+              '  <h2>Atacama, year one</h2>',
+              '  <time>2026-02-02</time>',
+              '</article>',
+              '<article>',
+              '  <h2>Why we melt sand at noon</h2>',
+              '  <time>2026-01-09</time>',
+              '</article>',
+            ].join('\n'),
+          },
+        ];
+        const cardsHost = document.querySelector('#cards'),
+          codesHost = document.querySelector('#codes'),
+          belt = document.querySelector('.belt'),
+          canvas = document.querySelector('canvas'),
+          ctx = canvas.getContext('2d'),
+          savedEl = document.querySelector('.saved'),
+          percentEl = document.querySelector('.percent');
+        const logo = `<svg class="mountain" viewBox="0 0 54 42" fill="none" aria-hidden="true"><path d="M3 38 24 5l19 33H3Z" stroke="currentColor" stroke-width="3.2"/><path d="m22 38 16-25 14 25H22Z" stroke="currentColor" stroke-width="3.2"/></svg>`;
+        const formatNumber = (number) => new Intl.NumberFormat('en-US').format(number);
+        data.forEach((page) => {
+          const card = document.createElement('article');
+          card.className = `card ${page.cls}`;
+          card.setAttribute('aria-label', `${page.title} website preview`);
+          if (page.bg) card.style.backgroundImage = `url("${page.bg}")`;
+          const menuMarkup = page.menu
+            .map((item) => `<span class="${item === page.active ? 'active' : ''}">${item}</span>`)
+            .join('');
+          card.innerHTML = `<div class="k-nav"><div class="k-logo">${logo}<span>Kessler</span></div><div class="k-menu">${menuMarkup}</div></div>${page.visual}`;
+          cardsHost.append(card);
+          const code = document.createElement('div');
+          code.className = 'code';
+          code.innerHTML = `<pre class="source"></pre><pre class="meta"></pre>`;
+          code.querySelector('.source').textContent = page.html;
+          code.querySelector('.meta').textContent =
+            `<!-- distilled: ${formatNumber(page.distilled)} tokens -->\n<!-- original: ${formatNumber(page.original)} tokens -->\n<!-- ${page.url} -->`;
+          codesHost.append(code);
+          page.element = card;
+          page.codeElement = code;
+          page.savedTokens = page.original - page.distilled;
+          page.savedPercent = Math.round((page.savedTokens / page.original) * 100);
+        });
+        const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+        let cardWidth = 0,
+          cardHeight = 0,
+          cardGap = 0,
+          cardStride = 0,
+          beltWidth = 0,
+          beltOffset = 0,
+          beltVelocity = 0,
+          hoverProgress = 0,
+          lastFrameTime = 0,
+          isDragging = false,
+          lastPointerX = 0,
+          lastPointerTime = 0,
+          activePageIndex = -1,
+          displayedSavedTokens = 0,
+          sparks = [];
+        const sparkColors = [
+          '#FF4A12',
+          '#FF5A1F',
+          '#FF6B2C',
+          '#FF8A3D',
+          '#FFB06A',
+          '#FFD9B5',
+          '#FFF3E6',
+        ];
+        const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
+        const positiveModulo = (value, divisor) => ((value % divisor) + divisor) % divisor;
+        function measure() {
+          const firstCard = data[0].element.getBoundingClientRect(),
+            root = getComputedStyle(document.documentElement);
+          cardWidth = firstCard.width;
+          cardHeight = firstCard.height;
+          cardGap = (parseFloat(root.getPropertyValue('--gap')) * innerWidth) / 100;
+          cardStride = cardWidth + cardGap;
+          beltWidth = cardStride * data.length;
+          const dpr = Math.min(devicePixelRatio || 1, 2),
+            br = belt.getBoundingClientRect();
+          canvas.width = Math.round(br.width * dpr);
+          canvas.height = Math.round(br.height * dpr);
+          canvas.style.width = br.width + 'px';
+          canvas.style.height = br.height + 'px';
+          ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+          if (!lastFrameTime) beltOffset = innerWidth / 2 - 0.62 * cardWidth;
+        }
+        // Seed the reveal texture with grid coordinates so pixels stay stable between frames.
+        function seededNoise(x, y, seed) {
+          let h =
+            (Math.imul(x, 374761393) + Math.imul(y, 668265263) + Math.imul(seed, 2147483647)) | 0;
+          h = Math.imul(h ^ (h >>> 13), 1274126177) | 0;
+          return ((h ^ (h >>> 16)) >>> 0) / 4294967296;
+        }
+        // Align every page with its code pane, then clip both at the moving comparison line.
+        function positionComparisonCards() {
+          const comparisonLine = innerWidth / 2;
+          let currentPageIndex = -1,
+            progress = 0;
+          data.forEach((page, pageIndex) => {
+            const x =
+                positiveModulo(beltOffset + pageIndex * cardStride + cardStride, beltWidth) -
+                cardStride,
+              cut = clamp(comparisonLine - x, 0, cardWidth),
+              crossesLine = cut > 0 && cut < cardWidth;
+            page.x = x;
+            page.cut = cut;
+            page.element.style.transform = `translate3d(${x}px,0,0)`;
+            page.codeElement.style.transform = `translate3d(${x}px,0,0)`;
+            if (cut > 0) {
+              page.element.style.clipPath = `inset(0 0 0 ${cut}px round 0 1.6vw 1.6vw 0)`;
+              page.element.style.webkitMaskImage = `linear-gradient(90deg,transparent ${cut}px,#000 ${cut + 26}px)`;
+              page.codeElement.style.clipPath = `inset(0 ${cardWidth - cut}px 0 0)`;
+              page.codeElement.style.visibility = 'visible';
+            } else {
+              page.element.style.clipPath = '';
+              page.element.style.webkitMaskImage = '';
+              page.codeElement.style.clipPath = '';
+              page.codeElement.style.visibility = 'hidden';
+            }
+            if (crossesLine && currentPageIndex < 0) {
+              currentPageIndex = pageIndex;
+              progress = cut / cardWidth;
+            }
+          });
+          if (currentPageIndex !== activePageIndex) {
+            activePageIndex = currentPageIndex;
+            if (activePageIndex >= 0) {
+              percentEl.textContent = `${data[activePageIndex].savedPercent}% less`;
+              displayedSavedTokens = 0;
+            } else displayedSavedTokens = 0;
+          }
+          if (activePageIndex >= 0) {
+            const target = data[activePageIndex].savedTokens * progress;
+            displayedSavedTokens += (target - displayedSavedTokens) * 0.24;
+            savedEl.textContent = '−' + formatNumber(Math.round(displayedSavedTokens));
+          }
+        }
+        // Draw the dissolve only around the reveal line, where the two page views meet.
+        function drawRevealEffect(frameTime, elapsedSeconds) {
+          const viewportWidth = innerWidth,
+            viewportHeight = belt.clientHeight,
+            comparisonLine = viewportWidth / 2,
+            effectTop = 70;
+          ctx.clearRect(0, 0, viewportWidth, viewportHeight);
+          data.forEach((page, pageIndex) => {
+            if (page.cut <= 0 || page.x + cardWidth <= comparisonLine) return;
+            const revealWidth = Math.min(150, page.x + cardWidth - comparisonLine);
+            if (revealWidth > 0) {
+              const glow = ctx.createLinearGradient(comparisonLine, 0, comparisonLine + 150, 0);
+              glow.addColorStop(0, 'rgba(255,96,40,.42)');
+              glow.addColorStop(1, 'rgba(255,96,40,0)');
+              ctx.fillStyle = glow;
+              ctx.fillRect(comparisonLine, effectTop, revealWidth, cardHeight);
+            }
+            const dissolveRadius = 0.3 * cardWidth,
+              startX = Math.max(0, page.cut - 2),
+              endX = Math.min(cardWidth, page.cut + dissolveRadius),
+              columns = Math.ceil((endX - startX) / 3),
+              rows = Math.ceil(cardHeight / 3);
+            for (let column = 0; column < columns; column++) {
+              const gridX = Math.floor(startX / 3) + column,
+                screenX = page.x + gridX * 3,
+                distanceFromLine = screenX - comparisonLine,
+                particleDensity = Math.pow(clamp(1 - distanceFromLine / dissolveRadius, 0, 1), 1.7);
+              for (let row = -5; row < rows + 5; row++) {
+                const gridY = row,
+                  insideCard = row >= 0 && row < rows,
+                  edgeFade = insideCard
+                    ? 1
+                    : clamp(1 - Math.abs(row - (row < 0 ? 0 : rows - 1)) / 5, 0, 1);
+                if (
+                  seededNoise(gridX, gridY, pageIndex) >=
+                  particleDensity * (insideCard ? 0.92 : 0.16) * edgeFade
+                )
+                  continue;
+                const colorNoise = seededNoise(gridY, gridX, pageIndex + 31);
+                if (
+                  !reducedMotion.matches &&
+                  seededNoise(gridX, gridY, Math.floor(frameTime / 111) + 97) < 0.22
+                )
+                  continue;
+                const paletteIndex =
+                  distanceFromLine < 10
+                    ? 4 + Math.floor(colorNoise * 3)
+                    : Math.floor(colorNoise * colorNoise * 7);
+                const jitterX = reducedMotion.matches
+                    ? 0
+                    : (seededNoise(gridX, gridY, pageIndex + 61) - 0.5) * 1.6,
+                  jitterY = reducedMotion.matches
+                    ? 0
+                    : (seededNoise(gridY, gridX, pageIndex + 79) - 0.5) * 1.6;
+                ctx.globalAlpha = insideCard ? 1 : edgeFade;
+                ctx.fillStyle = sparkColors[Math.min(paletteIndex, sparkColors.length - 1)];
+                const particleSize = 1.1 + colorNoise * 1.7;
+                ctx.fillRect(
+                  screenX - comparisonLine + jitterX,
+                  effectTop + gridY * 3 - 3 + jitterY,
+                  particleSize,
+                  particleSize,
+                );
+              }
+            }
+          });
+          ctx.globalAlpha = 1;
+          if (!reducedMotion.matches) {
+            for (let sparkIndex = 0; sparkIndex < 3; sparkIndex++)
+              if (Math.random() < 0.7) {
+                const visiblePage = data.find(
+                  (page) => page.cut > 0 && page.x + cardWidth > comparisonLine,
+                );
+                if (!visiblePage) break;
+                sparks.push({
+                  x: comparisonLine + Math.random() * 30,
+                  y: Math.random() * cardHeight - 10,
+                  vx: Math.random() * 70 - 30 + beltVelocity * 0.6,
+                  vy: Math.random() * 50 - 25,
+                  size: 0.8 + Math.random() * 1.8,
+                  life: 0.3 + Math.random() * 0.8,
+                  max: 0,
+                  color: sparkColors[Math.floor(Math.random() * sparkColors.length)],
+                });
+                sparks[sparks.length - 1].max = sparks[sparks.length - 1].life;
+              }
+            for (const s of sparks) {
+              s.x += s.vx * elapsedSeconds;
+              s.y += s.vy * elapsedSeconds;
+              s.life -= elapsedSeconds;
+              ctx.globalAlpha = Math.min(1, s.life * 2.2);
+              ctx.fillStyle = s.color;
+              ctx.fillRect(s.x - comparisonLine, effectTop + s.y, s.size, s.size);
+            }
+            sparks = sparks.filter((s) => s.life > 0);
+          }
+          ctx.globalAlpha = 1;
+        }
+        function animateFrame(frameTime) {
+          const elapsedSeconds = Math.min((frameTime - lastFrameTime) / 1000 || 0, 0.05);
+          lastFrameTime = frameTime;
+          const automaticSpeed = reducedMotion.matches ? 0 : -0.075 * innerWidth;
+          hoverProgress +=
+            ((belt.matches(':hover') ? 1 : 0) - hoverProgress) * Math.min(1, 4 * elapsedSeconds);
+          if (!isDragging) {
+            const targetVelocity = automaticSpeed * (1 - 0.65 * hoverProgress);
+            beltVelocity += (targetVelocity - beltVelocity) * (1 - Math.exp(-2.2 * elapsedSeconds));
+            beltOffset += beltVelocity * elapsedSeconds;
+          } else beltOffset += beltVelocity * elapsedSeconds;
+          positionComparisonCards();
+          drawRevealEffect(frameTime, elapsedSeconds);
+          requestAnimationFrame(animateFrame);
+        }
+        belt.addEventListener('pointerdown', (event) => {
+          isDragging = true;
+          lastPointerX = event.clientX;
+          lastPointerTime = performance.now();
+          beltVelocity = 0;
+          belt.classList.add('dragging');
+          belt.setPointerCapture(event.pointerId);
+        });
+        belt.addEventListener('pointermove', (event) => {
+          if (!isDragging) return;
+          const now = performance.now(),
+            distance = event.clientX - lastPointerX,
+            elapsedMilliseconds = Math.max(8, now - lastPointerTime);
+          beltOffset += distance;
+          beltVelocity = (distance / elapsedMilliseconds) * 1000 * 0.8 + beltVelocity * 0.2;
+          lastPointerX = event.clientX;
+          lastPointerTime = now;
+        });
+        function endDrag() {
+          isDragging = false;
+          belt.classList.remove('dragging');
+        }
+        belt.addEventListener('pointerup', endDrag);
+        belt.addEventListener('pointercancel', endDrag);
+        belt.addEventListener(
+          'wheel',
+          (event) => {
+            if (Math.abs(event.deltaX) > Math.abs(event.deltaY)) {
+              beltVelocity -= event.deltaX * 6;
+              event.preventDefault();
+            }
+          },
+          { passive: false },
+        );
+        addEventListener('resize', measure);
+        measure();
+        requestAnimationFrame(animateFrame);
+      })();
+    </script>
+  </body>
 </html>
